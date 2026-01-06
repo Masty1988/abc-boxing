@@ -1,0 +1,22 @@
+{
+  "name": "ABC Boxing Club La Rochelle",
+  "short_name": "ABC Boxing",
+  "description": "Club de Boxe Française, Savate et Kickboxing à La Rochelle",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121212",
+  "theme_color": "#EF4444",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/abc-boxing.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/images/abc-boxing.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
