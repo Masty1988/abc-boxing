@@ -16,15 +16,17 @@ export const TarifCard: React.FC<TarifCardProps> = ({
   onSelect,
 }) => {
   const disciplineLabel = {
-    bf: "Boxe Française",
-    k1: "Kickboxing K1",
-    bf_k1: "BF + K1",
+    "Boxe Française": "Boxe Française",
+    "Kickboxing": "Kickboxing K1",
+    "Boxe Française & Kickboxing": "BF + K1",
+    "bf_k1": "BF + K1",
   };
 
   const disciplineBadge = {
-    bf: "bf" as const,
-    k1: "k1" as const,
-    bf_k1: "info" as const,
+    "Boxe Française": "bf" as const,
+    "Kickboxing": "k1" as const,
+    "Boxe Française & Kickboxing": "info" as const,
+    "bf_k1": "info" as const,
   };
 
   return (

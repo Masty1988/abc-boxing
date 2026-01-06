@@ -2,7 +2,7 @@
 
 export type PageId = "home" | "inscription" | "club" | "actualites" | "galerie";
 
-export type Discipline = "bf" | "k1" | "bf_k1";
+export type Discipline = "Boxe Française" | "Kickboxing" | "Boxe Française & Kickboxing" | "bf_k1";
 export type Category = "adultes" | "enfants";
 export type FormulaType = "loisir" | "competition";
 

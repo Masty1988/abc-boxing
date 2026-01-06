@@ -3,7 +3,7 @@ import "./globals.css";
 import { Header, MobileNav, Footer } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "ABC Boxing Club La Rochelle",
+  title: "ABC Boxing La Rochelle",
   description: "Club de Boxe Française, Savate et Kickboxing à La Rochelle",
   manifest: "/manifest.json",
 };

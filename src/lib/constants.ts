@@ -4,13 +4,14 @@ import { Tarif, Horaire, StaffMember, ClubStats } from "./types";
 // CONTACT
 // =============================================================================
 export const CONTACT = {
-  phone: "05 46 00 12 34", // À MODIFIER
-  phoneLink: "tel:+33546001234",
+  phone: "06 32 72 85 41", 
+  phoneLink: "tel:+33632728541",
   email: "contact@abcboxing.fr",
-  address: "Gymnase Municipal",
+  place: "Gymnase Descartes",
+  address: "101, Avenue de bourgorne",
   city: "La Rochelle",
   postalCode: "17000",
-  fullAddress: "Gymnase Municipal, 17000 La Rochelle",
+  fullAddress: "Gymnase Descartes, 101, Avenue de bourgorne, 17000 La Rochelle",
 };
 
 // =============================================================================
@@ -20,7 +21,7 @@ export const TARIFS: Tarif[] = [
   // ENFANTS
   {
     id: "enfant-bf-loisir",
-    discipline: "bf",
+    discipline: "Boxe Française",
     category: "enfants",
     type: "loisir",
     name: "Boxe Française Loisir",
@@ -29,7 +30,7 @@ export const TARIFS: Tarif[] = [
   },
   {
     id: "enfant-bf-competition",
-    discipline: "bf",
+    discipline: "Boxe Française",
     category: "enfants",
     type: "competition",
     name: "Boxe Française Compétition",
@@ -40,7 +41,7 @@ export const TARIFS: Tarif[] = [
   // ADULTES LOISIR
   {
     id: "adulte-loisir",
-    discipline: "bf_k1",
+    discipline: "Boxe Française & Kickboxing",
     category: "adultes",
     type: "loisir",
     name: "Boxe Française & K1",
@@ -51,7 +52,7 @@ export const TARIFS: Tarif[] = [
   // ADULTES COMPÉTITION
   {
     id: "adulte-bf-competition",
-    discipline: "bf",
+    discipline: "Boxe Française",
     category: "adultes",
     type: "competition",
     name: "Boxe Française",
@@ -60,7 +61,7 @@ export const TARIFS: Tarif[] = [
   },
   {
     id: "adulte-k1-competition",
-    discipline: "k1",
+    discipline: "Kickboxing",
     category: "adultes",
     type: "competition",
     name: "Kickboxing K1",
@@ -82,11 +83,11 @@ export const TARIFS: Tarif[] = [
 // HORAIRES
 // =============================================================================
 export const HORAIRES: Horaire[] = [
-  { jour: "Mardi", cours: "Boxe Française", discipline: "bf", heures: "20h - 22h" },
+  { jour: "Mardi", cours: "Boxe Française", discipline: "Boxe Française", heures: "20h - 22h" },
   { jour: "Mercredi", cours: "Cardio Compétition", discipline: "bf_k1", heures: "20h - 21h" },
-  { jour: "Jeudi", cours: "Kickboxing K1", discipline: "k1", heures: "20h - 22h" },
-  { jour: "Vendredi", cours: "BF Enfants", discipline: "bf", heures: "19h30 - 21h", category: "enfants" },
-  { jour: "Vendredi", cours: "BF Adultes", discipline: "bf", heures: "19h30 - 21h", category: "adultes" },
+  { jour: "Jeudi", cours: "Kickboxing K1", discipline: "Kickboxing", heures: "20h - 22h" },
+  { jour: "Vendredi", cours: "BF Enfants", discipline: "Boxe Française", heures: "19h30 - 21h", category: "enfants" },
+  { jour: "Vendredi", cours: "BF Adultes", discipline: "Boxe Française", heures: "19h30 - 21h", category: "adultes" },
   { jour: "Vendredi", cours: "Compétition", discipline: "bf_k1", heures: "21h - 22h" },
 ];
 
@@ -109,9 +110,9 @@ export const IMAGES = {
 // STAFF & STATS
 // =============================================================================
 export const STAFF: StaffMember[] = [
-  { name: "Jérémy", role: "Président / Coach", image: IMAGES.officiel },
-  { name: "Marc", role: "Préparateur physique", image: IMAGES.fede },
-  { name: "Sophie", role: "Secrétaire", image: IMAGES.engage2 },
+  { name: "Vincent", role: "Arbitre Officiel / Coach", image: IMAGES.officiel },
+  { name: "Vanessa", role: "Préparateur physique", image: IMAGES.fede },
+  { name: "Nathalie", role: "Présidente", image: IMAGES.engage2 },
 ];
 
 export const CLUB_STATS: ClubStats[] = [
