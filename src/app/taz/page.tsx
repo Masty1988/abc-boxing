@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { ImageManager } from "@/components/admin/ImageManager";
 
 // Types
 interface Adherent {
@@ -368,16 +369,7 @@ export default function AdminDashboard() {
           </div>
         )}
 
-        {activeTab === "photos" && (
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
-            <h2 className="font-bold text-slate-800 mb-4">Gestion des Photos</h2>
-            <p className="text-slate-500">
-              La gestion des photos sera disponible prochainement.
-              <br />
-              Glissez-déposez pour réordonner, cliquez pour modifier.
-            </p>
-          </div>
-        )}
+        {activeTab === "photos" && <PhotosTab />}
       </main>
 
       {/* Modal Validation Paiement */}
@@ -597,6 +589,18 @@ function AddAdherentModal({
           </div>
         </form>
       </div>
+    </div>
+  );
+}
+
+// =============================================================================
+// Onglet Photos
+// =============================================================================
+function PhotosTab() {
+  return (
+    <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+      <h2 className="font-bold text-slate-800 mb-4">Gestion des Photos du Site</h2>
+      <ImageManager />
     </div>
   );
 }
