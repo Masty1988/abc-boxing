@@ -109,7 +109,7 @@ export default function ComingSoon() {
           Nous contacter :
         </p>
         <a
-          href="tel:+33546001234"
+          href="tel:+33632728541"
           style={{
             display: "inline-flex",
             alignItems: "center",

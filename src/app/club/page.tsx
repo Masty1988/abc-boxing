@@ -17,14 +17,14 @@ export default function ClubPage() {
         <Card className="p-6" hover={false}>
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 ring-4 ring-red-500/20 relative">
-              <Image src={IMAGES.officiel} alt="Jérémy" fill className="object-cover" />
+              <Image src={IMAGES.officiel} alt="Vincent" fill className="object-cover" />
             </div>
             <div>
               <h3 className="text-xl font-bold mb-2">Le Mot du Président</h3>
               <p className="text-gray-400 italic leading-relaxed">
                 &quot;Bienvenue à La Rochelle. Ici, on forme des champions, mais surtout des humains. Le respect, le dépassement de soi et la solidarité sont nos valeurs fondamentales.&quot;
               </p>
-              <p className="text-sm text-red-400 mt-3 font-medium">— Jérémy, Président ABC Boxing</p>
+              <p className="text-sm text-red-400 mt-3 font-medium">— Vincent, Président ABC Boxing</p>
             </div>
           </div>
         </Card>

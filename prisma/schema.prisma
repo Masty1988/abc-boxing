@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Adherent {
+  id              String   @id @default(cuid())
+  nom             String
+  prenom          String
+  email           String?  @unique
+  telephone       String?
+  photo           String?
+  numeroLicence   String?  @unique
+  categorie       String   @default("ADULTE")
+  discipline      String   @default("BF")
+  formule         String   @default("LOISIR")
+  combattant      Boolean  @default(false)
+  paye            Boolean  @default(false)
+  montant         Float?
+  methodePaiement String?
+  stripePaymentId String?
+  datePaiement    DateTime?
+  dateInscription DateTime @default(now())
+  saison          String   @default("2024-2025")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  nom          String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model PhotoSlot {
+  id        String   @id @default(cuid())
+  page      String
+  slot      String
+  label     String
+  imageUrl  String
+  ordre     Int      @default(0)
+  updatedAt DateTime @updatedAt
+  @@unique([page, slot])
+}

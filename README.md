@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ABC Boxing Club - Backend Admin
 
-## Getting Started
+## Installation
 
-First, run the development server:
+### 1. Dépendances
+
+```bash
+npm install prisma @prisma/client next-auth bcryptjs stripe
+npm install -D @types/bcryptjs tsx
+```
+
+### 2. Configuration
+
+Copier `.env.example` en `.env.local` et remplir :
+
+```bash
+cp .env.example .env.local
+```
+
+Variables importantes :
+- `DATABASE_URL` : Chemin SQLite (dev) ou URL PostgreSQL (prod)
+- `NEXTAUTH_SECRET` : Générer avec `openssl rand -base64 32`
+- `STRIPE_SECRET_KEY` : Depuis dashboard.stripe.com
+
+### 3. Base de données
+
+```bash
+# Générer le client Prisma
+npx prisma generate
+
+# Créer la base de données
+npx prisma db push
+
+# Créer l'admin initial
+npx tsx scripts/create-admin.ts
+
+# Initialiser les slots photos
+npx tsx scripts/init-photos.ts
+```
+
+### 4. Lancer
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Accéder à http://localhost:3000/taz
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Login par défaut :**
+- Username: `taz`
+- Password: `ABC2024!`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+⚠️ **CHANGER LE MOT DE PASSE EN PRODUCTION !**
 
-## Learn More
+## Structure des fichiers
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── auth/[...nextauth]/route.ts  # Auth NextAuth
+│   │   ├── adherents/                    # CRUD adhérents
+│   │   │   ├── route.ts
+│   │   │   └── [id]/
+│   │   │       ├── route.ts
+│   │   │       └── validate-payment/route.ts
+│   │   ├── photos/route.ts              # Gestion photos
+│   │   └── stripe/
+│   │       ├── checkout/route.ts        # Créer paiement
+│   │       └── webhook/route.ts         # Webhook Stripe
+│   └── taz/
+│       ├── layout.tsx                   # SessionProvider
+│       ├── page.tsx                     # Dashboard
+│       └── login/page.tsx               # Login
+├── lib/
+│   ├── auth.ts                          # Config NextAuth
+│   └── prisma.ts                        # Client Prisma
+prisma/
+│   └── schema.prisma                    # Schéma BDD
+scripts/
+│   ├── create-admin.ts                  # Créer admin
+│   └── init-photos.ts                   # Init photos
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Stripe
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Configuration webhook (prod)
 
-## Deploy on Vercel
+1. Dashboard Stripe → Developers → Webhooks
+2. Add endpoint: `https://abcboxing.fr/api/stripe/webhook`
+3. Events: `checkout.session.completed`, `payment_intent.payment_failed`
+4. Copier le signing secret dans `STRIPE_WEBHOOK_SECRET`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Test local
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+stripe listen --forward-to localhost:3000/api/stripe/webhook
+```
+
+## Déploiement Vercel
+
+1. Connecter le repo GitHub
+2. Variables d'environnement dans Vercel :
+   - `DATABASE_URL` (Vercel Postgres ou Supabase)
+   - `NEXTAUTH_URL` = `https://abcboxing.fr`
+   - `NEXTAUTH_SECRET`
+   - `STRIPE_SECRET_KEY`
+   - `STRIPE_WEBHOOK_SECRET`
+   - `NEXT_PUBLIC_APP_URL` = `https://abcboxing.fr`
+
+3. Build command : `prisma generate && next build`
