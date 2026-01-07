@@ -49,3 +49,10 @@ model PhotoSlot {
   updatedAt DateTime @updatedAt
   @@unique([page, slot])
 }
+model SiteImage {
+  id          String   @id @default(cuid())
+  key         String   @unique // Ex: "home_hero", "about_coach", "gallery_1"
+  url         String   // L'URL Cloudinary
+  description String?  // Pour le alt text (SEO)
+  updatedAt   DateTime @updatedAt
+}
