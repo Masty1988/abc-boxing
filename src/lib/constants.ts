@@ -110,9 +110,10 @@ export const IMAGES = {
 // STAFF & STATS
 // =============================================================================
 export const STAFF: StaffMember[] = [
-  { name: "Vincent", role: "Arbitre Officiel / Coach", image: IMAGES.officiel },
+  { name: "Vincent", role: "Coach / Arbitre Officiel", image: IMAGES.officiel },
   { name: "Vanessa", role: "Préparateur physique", image: IMAGES.fede },
   { name: "Nathalie", role: "Présidente", image: IMAGES.engage2 },
+  { name: "Maya", role: "Entraîneur Kickboxing", image: IMAGES.engage },
 ];
 
 export const CLUB_STATS: ClubStats[] = [

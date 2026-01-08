@@ -24,7 +24,7 @@ export default async function ClubPage() {
               <p className="text-gray-400 italic leading-relaxed">
                 &quot;Bienvenue à La Rochelle. Ici, on forme des champions, mais surtout des humains. Le respect, le dépassement de soi et la solidarité sont nos valeurs fondamentales.&quot;
               </p>
-              <p className="text-sm text-red-400 mt-3 font-medium">— Vincent, Président ABC Boxing</p>
+              <p className="text-sm text-red-400 mt-3 font-medium">— Nathalie, Présidente ABC Boxing</p>
             </div>
           </div>
         </Card>
