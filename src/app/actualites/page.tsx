@@ -1,45 +1,44 @@
-"use client";
-
 import Image from "next/image";
 import { Card, Badge } from "@/components/ui";
-import { IMAGES } from "@/lib/constants";
+import { getImages } from "@/lib/get-images";
 import { Post } from "@/lib/types";
 
-const posts: Post[] = [
-  {
-    id: 1,
-    pinned: true,
-    tag: "Solidarité",
-    tagColor: "info",
-    title: "Octobre Rose : 400€ récoltés !",
-    excerpt: "Ensemble contre le cancer du sein. Un immense merci à tous les participants de cette belle journée solidaire !",
-    image: IMAGES.engage,
-    date: "Il y a 2 jours",
-    likes: 89,
-  },
-  {
-    id: 2,
-    tag: "Compétition",
-    tagColor: "success",
-    title: "Bravo à nos championnes !",
-    excerpt: "Victoire éclatante aux championnats régionaux. Trois ceintures ramenées à La Rochelle !",
-    image: IMAGES.kick,
-    date: "Il y a 5 jours",
-    likes: 124,
-  },
-  {
-    id: 3,
-    tag: "Fédération",
-    tagColor: "warning",
-    title: "Stage national des officiels",
-    excerpt: "Notre équipe présente au rassemblement fédéral. Formation arbitrage et développement.",
-    image: IMAGES.fede,
-    date: "Il y a 1 semaine",
-    likes: 45,
-  },
-];
+export default async function ActualitesPage() {
+  const IMAGES = await getImages();
 
-export default function ActualitesPage() {
+  const posts: Post[] = [
+    {
+      id: 1,
+      pinned: true,
+      tag: "Solidarité",
+      tagColor: "info",
+      title: "Octobre Rose : 400€ récoltés !",
+      excerpt: "Ensemble contre le cancer du sein. Un immense merci à tous les participants de cette belle journée solidaire !",
+      image: IMAGES.engage,
+      date: "Il y a 2 jours",
+      likes: 89,
+    },
+    {
+      id: 2,
+      tag: "Compétition",
+      tagColor: "success",
+      title: "Bravo à nos championnes !",
+      excerpt: "Victoire éclatante aux championnats régionaux. Trois ceintures ramenées à La Rochelle !",
+      image: IMAGES.kick,
+      date: "Il y a 5 jours",
+      likes: 124,
+    },
+    {
+      id: 3,
+      tag: "Fédération",
+      tagColor: "warning",
+      title: "Stage national des officiels",
+      excerpt: "Notre équipe présente au rassemblement fédéral. Formation arbitrage et développement.",
+      image: IMAGES.fede,
+      date: "Il y a 1 semaine",
+      likes: 45,
+    },
+  ];
   return (
     <div className="min-h-screen bg-[#121212] text-white pb-24">
       <div className="h-32 bg-gradient-to-b from-blue-900/30 to-transparent flex items-end px-6 pb-4">

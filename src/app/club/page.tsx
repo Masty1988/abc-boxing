@@ -1,11 +1,11 @@
-"use client";
-
 import Image from "next/image";
 import { Card } from "@/components/ui";
 import { IconTrophy, IconMapPin } from "@/components/icons";
-import { IMAGES, STAFF, CLUB_STATS, CONTACT } from "@/lib/constants";
+import { STAFF, CLUB_STATS, CONTACT } from "@/lib/constants";
+import { getImages } from "@/lib/get-images";
 
-export default function ClubPage() {
+export default async function ClubPage() {
+  const IMAGES = await getImages();
   return (
     <div className="min-h-screen bg-[#121212] text-white pb-24">
       <div className="h-32 bg-gradient-to-b from-red-900/30 to-transparent flex items-end px-6 pb-4">
