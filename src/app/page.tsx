@@ -1,209 +1,115 @@
-"use client";
+import Link from "next/link";
+import { Button, Card } from "@/components/ui";
+import { IconCalendar, IconClock, IconPhone, IconMapPin } from "@/components/icons";
+import { HORAIRES, CONTACT } from "@/lib/constants";
 
-import Image from "next/image";
-
-export default function ComingSoon() {
+export default function HomePage() {
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "linear-gradient(135deg, #121212 0%, #1a0a0a 50%, #121212 100%)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-        color: "white",
-        textAlign: "center",
-        padding: "20px",
-      }}
-    >
-      {/* Logo grand format */}
-      <div
-        style={{
-          width: "200px",
-          height: "200px",
-          borderRadius: "50%",
-          overflow: "hidden",
-          marginBottom: "40px",
-          border: "4px solid rgba(239, 68, 68, 0.3)",
-          boxShadow: "0 0 40px rgba(239, 68, 68, 0.2)",
-          animation: "pulse-glow 3s infinite",
-        }}
-      >
-        <Image
-          src="/images/abc-boxing.jpg"
-          alt="ABC Boxing Club"
-          width={200}
-          height={200}
-          className="object-cover"
-          priority
-        />
-      </div>
+    <div className="min-h-screen bg-[#121212] text-white pb-24">
+      {/* HERO */}
+      <section className="relative h-[75vh] min-h-[500px] flex flex-col items-center justify-center text-center px-6 bg-gradient-to-br from-red-900 via-black to-gray-900">
+        {/* Overlay sombre pour effet */}
+        <div className="absolute inset-0 bg-black/40" />
 
-      {/* Sous-titre */}
-      <p
-        style={{
-          fontSize: "clamp(1.2rem, 4vw, 1.8rem)",
-          color: "#ffffff",
-          fontWeight: 600,
-          marginBottom: "15px",
-          textTransform: "uppercase",
-          letterSpacing: "2px",
-        }}
-      >
-        ABC Boxing 
-      </p>
+        {/* Contenu */}
+        <div className="relative z-10 flex flex-col items-center">
+          {/* Logo avec animation bounce */}
+          <div className="w-20 h-20 rounded-full bg-red-500/20 backdrop-blur-md border-2 border-red-500/50 flex items-center justify-center mb-6 animate-bounce">
+            <span className="text-4xl">🥊</span>
+          </div>
 
-      <p
-        style={{
-          fontSize: "clamp(1rem, 3vw, 1.3rem)",
-          color: "#9ca3af",
-          marginBottom: "40px",
-          maxWidth: "500px",
-        }}
-      >
-        <span style={{ color: "#ef4444" }}>Boxe Française</span> •{" "}
-        <span style={{ color: "#ef4444" }}>Kickboxing</span> •{" "}
-        <span style={{ color: "#ef4444" }}>La Rochelle</span>
-      </p>
+          <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
+            <span className="text-white">Dépasse-toi.</span>
+            <br />
+            <span className="text-red-500">Rejoins le ring.</span>
+          </h1>
 
-      {/* Barre de progression */}
-      <div
-        style={{
-          width: "100%",
-          maxWidth: "350px",
-          height: "10px",
-          background: "rgba(255,255,255,0.1)",
-          borderRadius: "5px",
-          overflow: "hidden",
-          marginBottom: "15px",
-        }}
-      >
-        <div
-          style={{
-            width: "80%",
-            height: "100%",
-            background: "linear-gradient(90deg, #ef4444, #f97316)",
-            borderRadius: "5px",
-            animation: "pulse-bar 2s infinite",
-          }}
-        />
-      </div>
-      <p style={{ color: "#6b7280", fontSize: "15px", marginBottom: "50px", fontWeight: 500 }}>
-        Nouveau site en cours de développement...
-      </p>
+          <p className="text-gray-300 text-lg max-w-md mb-6">
+            ABC Boxing Club La Rochelle — Savate, Boxe Française, Kickboxing
+          </p>
 
-      {/* Contact */}
-      <div
-        style={{
-          background: "rgba(255,255,255,0.05)",
-          border: "2px solid rgba(239, 68, 68, 0.3)",
-          borderRadius: "20px",
-          padding: "30px 40px",
-          marginBottom: "30px",
-          backdropFilter: "blur(10px)",
-        }}
-      >
-        <p style={{ color: "#9ca3af", marginBottom: "15px", fontSize: "15px" }}>
-          Nous contacter :
-        </p>
-        <a
-          href="tel:+33632728541"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "10px",
-            color: "#22c55e",
-            fontSize: "1.8rem",
-            fontWeight: "bold",
-            textDecoration: "none",
-            transition: "transform 0.2s",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-        >
-          📞 06 32 72 85 41
-        </a>
-      </div>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Link href="/inscription">
+              <Button size="lg">S&apos;inscrire</Button>
+            </Link>
+            <a href={CONTACT.phoneLink}>
+              <Button size="lg" variant="secondary">
+                <IconPhone />
+                Appeler
+              </Button>
+            </a>
+          </div>
+        </div>
+      </section>
 
-      {/* Réseaux sociaux */}
-      <div style={{ display: "flex", gap: "20px", marginTop: "20px" }}>
-        <a
-          href="#"
-          style={{
-            width: "56px",
-            height: "56px",
-            background: "rgba(59, 89, 152, 0.2)",
-            border: "2px solid rgba(59, 89, 152, 0.4)",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "28px",
-            textDecoration: "none",
-            transition: "all 0.3s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(59, 89, 152, 0.4)";
-            e.currentTarget.style.transform = "translateY(-5px)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "rgba(59, 89, 152, 0.2)";
-            e.currentTarget.style.transform = "translateY(0)";
-          }}
-        >
-          📘
-        </a>
-        <a
-          href="#"
-          style={{
-            width: "56px",
-            height: "56px",
-            background: "rgba(193, 53, 132, 0.2)",
-            border: "2px solid rgba(193, 53, 132, 0.4)",
-            borderRadius: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            fontSize: "28px",
-            textDecoration: "none",
-            transition: "all 0.3s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(193, 53, 132, 0.4)";
-            e.currentTarget.style.transform = "translateY(-5px)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "rgba(193, 53, 132, 0.2)";
-            e.currentTarget.style.transform = "translateY(0)";
-          }}
-        >
-          📸
-        </a>
-      </div>
+      {/* HORAIRES */}
+      <section className="px-4 py-8 -mt-8 relative z-20">
+        <Card className="p-6" hover={false}>
+          <h2 className="text-lg font-bold mb-4 flex items-center gap-2">
+            <IconClock />
+            Horaires d&apos;entraînement
+          </h2>
+          <div className="grid grid-cols-2 gap-3">
+            {HORAIRES.slice(0, 4).map((h, i) => (
+              <div key={i} className="bg-white/5 rounded-xl p-3">
+                <div className="text-red-400 font-bold text-sm">{h.jour}</div>
+                <div className="text-white text-xs">{h.cours}</div>
+                <div className="text-gray-400 text-xs">{h.heures}</div>
+              </div>
+            ))}
+          </div>
+          <Link href="/inscription" className="block mt-4">
+            <Button variant="secondary" className="w-full">
+              Voir tous les horaires & tarifs
+            </Button>
+          </Link>
+        </Card>
+      </section>
 
-      {/* CSS animations */}
-      <style>{`
-        @keyframes pulse-glow {
-          0%, 100% {
-            box-shadow: 0 0 40px rgba(239, 68, 68, 0.2);
-            transform: scale(1);
-          }
-          50% {
-            box-shadow: 0 0 60px rgba(239, 68, 68, 0.4);
-            transform: scale(1.02);
-          }
-        }
-        @keyframes pulse-bar {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.6;
-          }
-        }
-      `}</style>
+      {/* PROCHAIN ÉVÉNEMENT - CHOC DES GUERRIERS */}
+      <section className="px-4 py-8">
+        <Card className="overflow-hidden" hover={false}>
+          {/* Container avec hauteur fixe */}
+          <div className="h-48 relative bg-gradient-to-br from-red-900 to-red-700 flex items-center justify-center">
+            <div className="text-center">
+              <span className="text-6xl">🥊</span>
+            </div>
+            <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium bg-red-500/80 text-white">
+              PROCHAIN EVENT
+            </span>
+          </div>
+          <div className="p-6">
+            <div className="flex items-center gap-2 text-red-400 text-sm mb-2">
+              <IconCalendar />
+              <span>Samedi 15 Mars — 20h00</span>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Gala du Choc des Guerriers</h3>
+            <p className="text-gray-400 text-sm mb-4">
+              12 combats • Restauration sur place • Ambiance garantie
+            </p>
+            <Button variant="info" className="w-full">
+              Réserver ma place — 15€
+            </Button>
+          </div>
+        </Card>
+      </section>
+
+      {/* LOCALISATION RAPIDE */}
+      <section className="px-4 py-8">
+        <Card className="p-6" hover={false}>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-red-500/20 rounded-xl">
+                <IconMapPin className="text-red-400" />
+              </div>
+              <div>
+                <h3 className="font-bold text-white">Nous trouver</h3>
+                <p className="text-sm text-gray-400">{CONTACT.fullAddress}</p>
+              </div>
+            </div>
+          </div>
+        </Card>
+      </section>
     </div>
   );
 }

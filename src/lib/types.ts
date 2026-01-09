@@ -63,3 +63,27 @@ export interface ClubStats {
   label: string;
   value: string;
 }
+
+export interface InscriptionData {
+  // Informations personnelles
+  prenom: string;
+  nom: string;
+  dateNaissance: string;
+  email: string;
+  telephone: string;
+  adresse: string;
+  codePostal: string;
+  ville: string;
+
+  // Informations formule
+  category: Category;
+  tarifId: string;
+  tarifName: string;
+  price: number;
+
+  // Informations responsable légal (si enfant)
+  responsableNom?: string;
+  responsablePrenom?: string;
+  responsableTelephone?: string;
+  responsableEmail?: string;
+}

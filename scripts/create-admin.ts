@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 
 async function main() {
   const username = "taz";
-  const password = "ABC2024!"; // À CHANGER EN PROD !
+  const password = "017007"; // Mot de passe demandé
   const nom = "Vincent";
 
   // Hash du mot de passe

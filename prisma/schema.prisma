@@ -25,7 +25,7 @@ model Adherent {
   stripePaymentId String?
   datePaiement    DateTime?
   dateInscription DateTime @default(now())
-  saison          String   @default("2024-2025")
+  saison          String   @default("2025-2026")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }

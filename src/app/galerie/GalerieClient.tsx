@@ -166,32 +166,44 @@ export function GalerieClient({ images }: GalerieClientProps) {
         </div>
 
         <div className="flex justify-center gap-8 flex-wrap">
-          {STAFF.map((member, index) => (
-            <div key={index} className="text-center">
-              {/* Photo en rond */}
-              <div className="relative w-28 h-28 mx-auto mb-3">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-red-500/30 to-orange-500/30 blur-lg" />
-                <div className="relative w-full h-full rounded-full overflow-hidden border-3 border-red-500/40 shadow-xl">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
+          {STAFF.map((member, index) => {
+            // Chemin vers la photo staff (sera /images/staff_vincent.jpg, etc.)
+            const staffPhotoPath = `/images/staff_${member.name.toLowerCase()}.jpg`;
+            const hasPhoto = false; // 🔧 Mettre à true quand les photos seront uploadées
+
+            return (
+              <div key={index} className="text-center">
+                {/* Photo en rond avec fallback initiales */}
+                <div className="relative w-28 h-28 mx-auto mb-3">
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-red-500/30 to-orange-500/30 blur-lg" />
+                  <div className="relative w-full h-full rounded-full overflow-hidden border-3 border-red-500/40 shadow-xl bg-gradient-to-br from-red-600 to-orange-600 flex items-center justify-center">
+                    {hasPhoto ? (
+                      <Image
+                        src={staffPhotoPath}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <span className="text-3xl font-black text-white">
+                        {member.name.charAt(0)}
+                      </span>
+                    )}
+                  </div>
                 </div>
+
+                {/* Nom */}
+                <h3 className="text-lg font-bold text-white mb-1">
+                  {member.name}
+                </h3>
+
+                {/* Rôle */}
+                <p className="text-red-400 text-xs font-medium">
+                  {member.role}
+                </p>
               </div>
-
-              {/* Nom */}
-              <h3 className="text-lg font-bold text-white mb-1">
-                {member.name}
-              </h3>
-
-              {/* Rôle */}
-              <p className="text-red-400 text-xs font-medium">
-                {member.role}
-              </p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </section>
     </div>
