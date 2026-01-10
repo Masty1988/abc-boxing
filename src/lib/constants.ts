@@ -130,6 +130,6 @@ export const NAV_ITEMS = [
   { id: "home", label: "Accueil", href: "/" },
   { id: "inscription", label: "Inscription", href: "/inscription" },
   { id: "club", label: "Club", href: "/club" },
+  { id: "galerie", label: "Histoire", href: "/galerie" },
   { id: "actualites", label: "News", href: "/actualites" },
-  { id: "galerie", label: "Galerie", href: "/galerie" },
 ] as const;

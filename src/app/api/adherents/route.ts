@@ -27,8 +27,12 @@ export async function GET(request: NextRequest) {
   const combattant = searchParams.get("combattant");
 
   try {
-    const where: any = { saison };
-    
+    const where: {
+      saison: string;
+      paye?: boolean;
+      combattant?: boolean;
+    } = { saison };
+
     if (paye !== null) {
       where.paye = paye === "true";
     }

@@ -46,6 +46,14 @@ export const EDITABLE_IMAGES: ImageSlot[] = [
     width: 400,
     height: 400,
   },
+  {
+    id: "ui-trophees",
+    label: "Photo Trophées/Palmarès",
+    description: "Photo des trophées, ceintures et médailles du club",
+    category: "UI",
+    width: 1200,
+    height: 800,
+  },
 
   // =============================================================================
   // IMAGES COMBAT (Photos de gala/compétitions)
@@ -101,6 +109,114 @@ export const EDITABLE_IMAGES: ImageSlot[] = [
     category: "ENTRAINEMENT",
     width: 1200,
     height: 800,
+  },
+
+  // =============================================================================
+  // GALERIE PALMARÈS (Page Club)
+  // =============================================================================
+  {
+    id: "palmares-trophees-1",
+    label: "Palmarès - Trophées #1",
+    description: "Photo des trophées du club",
+    category: "AUTRE",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "palmares-trophees-2",
+    label: "Palmarès - Trophées #2",
+    description: "Photo des trophées du club",
+    category: "AUTRE",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "palmares-trophees-3",
+    label: "Palmarès - Trophées #3",
+    description: "Photo des trophées du club",
+    category: "AUTRE",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "palmares-medailles-1",
+    label: "Palmarès - Médailles",
+    description: "Photo des médailles du club",
+    category: "AUTRE",
+    width: 1200,
+    height: 900,
+  },
+
+  // =============================================================================
+  // GALERIE SALLE (Page Club)
+  // =============================================================================
+  {
+    id: "salle-vue-generale",
+    label: "Salle - Vue Générale",
+    description: "Vue d'ensemble de la salle d'entraînement",
+    category: "ENTRAINEMENT",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "salle-sacs",
+    label: "Salle - Sacs de Frappe",
+    description: "Zone des sacs de frappe",
+    category: "ENTRAINEMENT",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "salle-ring",
+    label: "Salle - Ring",
+    description: "Le ring de la salle",
+    category: "ENTRAINEMENT",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "salle-entrainement-1",
+    label: "Salle - Entraînement",
+    description: "Photo d'entraînement dans la salle",
+    category: "ENTRAINEMENT",
+    width: 1200,
+    height: 900,
+  },
+
+  // =============================================================================
+  // GALERIE RING / COMBATS (Page Club)
+  // =============================================================================
+  {
+    id: "ring-combat-1",
+    label: "Ring - Combat #1",
+    description: "Photo de combat sur le ring",
+    category: "COMBAT",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "ring-combat-2",
+    label: "Ring - Combat #2",
+    description: "Photo de combat sur le ring",
+    category: "COMBAT",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "ring-victoire-1",
+    label: "Ring - Victoire",
+    description: "Photo de victoire/célébration",
+    category: "COMBAT",
+    width: 1200,
+    height: 900,
+  },
+  {
+    id: "ring-podium-1",
+    label: "Ring - Podium",
+    description: "Photo sur le podium",
+    category: "COMBAT",
+    width: 1200,
+    height: 900,
   },
 ];
 

@@ -1,9 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button, Card } from "@/components/ui";
 import { IconCalendar, IconClock, IconPhone, IconMapPin } from "@/components/icons";
 import { HORAIRES, CONTACT } from "@/lib/constants";
+import { prisma } from "@/lib/prisma";
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Récupérer le prochain événement publié
+  const prochainEvent = await prisma.event.findFirst({
+    where: {
+      publie: true,
+      date: { gte: new Date() },
+    },
+    orderBy: { date: "asc" },
+  });
+
   return (
     <div className="min-h-screen bg-[#121212] text-white pb-24">
       {/* HERO */}
@@ -66,33 +77,70 @@ export default function HomePage() {
         </Card>
       </section>
 
-      {/* PROCHAIN ÉVÉNEMENT - CHOC DES GUERRIERS */}
-      <section className="px-4 py-8">
-        <Card className="overflow-hidden" hover={false}>
-          {/* Container avec hauteur fixe */}
-          <div className="h-48 relative bg-gradient-to-br from-red-900 to-red-700 flex items-center justify-center">
-            <div className="text-center">
-              <span className="text-6xl">🥊</span>
+      {/* PROCHAIN ÉVÉNEMENT - DYNAMIQUE */}
+      {prochainEvent && (
+        <section className="px-4 py-8">
+          <Card className="overflow-hidden" hover={false}>
+            {/* Image ou placeholder */}
+            <div className="h-48 relative bg-gradient-to-br from-red-900 to-red-700 flex items-center justify-center">
+              {prochainEvent.imageUrl ? (
+                <Image
+                  src={prochainEvent.imageUrl}
+                  alt={prochainEvent.titre}
+                  fill
+                  className="object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="text-center">
+                  <span className="text-6xl">🥊</span>
+                </div>
+              )}
+              <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium bg-red-500/80 text-white z-10">
+                PROCHAIN EVENT
+              </span>
             </div>
-            <span className="absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium bg-red-500/80 text-white">
-              PROCHAIN EVENT
-            </span>
-          </div>
-          <div className="p-6">
-            <div className="flex items-center gap-2 text-red-400 text-sm mb-2">
-              <IconCalendar />
-              <span>Samedi 15 Mars — 20h00</span>
+            <div className="p-6">
+              <div className="flex items-center gap-2 text-red-400 text-sm mb-2">
+                <IconCalendar />
+                <span>
+                  {new Date(prochainEvent.date).toLocaleDateString("fr-FR", {
+                    weekday: "long",
+                    day: "numeric",
+                    month: "long",
+                  })}
+                  {" — "}
+                  {new Date(prochainEvent.date).toLocaleTimeString("fr-FR", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })}
+                </span>
+              </div>
+              <h3 className="text-xl font-bold mb-2">{prochainEvent.titre}</h3>
+              <p className="text-gray-400 text-sm mb-4">{prochainEvent.description}</p>
+              {prochainEvent.lienReservation ? (
+                <a
+                  href={prochainEvent.lienReservation}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Button variant="info" className="w-full">
+                    Réserver ma place
+                    {prochainEvent.prix && ` — ${prochainEvent.prix}€`}
+                  </Button>
+                </a>
+              ) : (
+                <Button variant="info" className="w-full" disabled>
+                  {prochainEvent.prix
+                    ? `Tarif : ${prochainEvent.prix}€`
+                    : "Entrée gratuite"}
+                </Button>
+              )}
             </div>
-            <h3 className="text-xl font-bold mb-2">Gala du Choc des Guerriers</h3>
-            <p className="text-gray-400 text-sm mb-4">
-              12 combats • Restauration sur place • Ambiance garantie
-            </p>
-            <Button variant="info" className="w-full">
-              Réserver ma place — 15€
-            </Button>
-          </div>
-        </Card>
-      </section>
+          </Card>
+        </section>
+      )}
 
       {/* LOCALISATION RAPIDE */}
       <section className="px-4 py-8">

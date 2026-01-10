@@ -14,7 +14,7 @@ export default async function ActualitesPage() {
       tagColor: "info",
       title: "Octobre Rose : 400€ récoltés !",
       excerpt: "Ensemble contre le cancer du sein. Un immense merci à tous les participants de cette belle journée solidaire !",
-      image: IMAGES.engage,
+      image: IMAGES["entrainement-groupe-1"], // Photo action associative
       date: "Il y a 2 jours",
       likes: 89,
     },
@@ -24,7 +24,7 @@ export default async function ActualitesPage() {
       tagColor: "success",
       title: "Bravo à nos championnes !",
       excerpt: "Victoire éclatante aux championnats régionaux. Trois ceintures ramenées à La Rochelle !",
-      image: IMAGES.kick,
+      image: IMAGES["combat-champion-1"], // Photo championnes
       date: "Il y a 5 jours",
       likes: 124,
     },
@@ -34,7 +34,7 @@ export default async function ActualitesPage() {
       tagColor: "warning",
       title: "Stage national des officiels",
       excerpt: "Notre équipe présente au rassemblement fédéral. Formation arbitrage et développement.",
-      image: IMAGES.fede,
+      image: IMAGES["entrainement-coach"], // Photo coach/formation
       date: "Il y a 1 semaine",
       likes: 45,
     },

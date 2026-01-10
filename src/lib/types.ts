@@ -87,3 +87,17 @@ export interface InscriptionData {
   responsableTelephone?: string;
   responsableEmail?: string;
 }
+
+export interface Event {
+  id: string;
+  titre: string;
+  description: string;
+  date: Date | string;
+  lieu?: string | null;
+  prix?: number | null;
+  imageUrl?: string | null;
+  lienReservation?: string | null;
+  publie: boolean;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}

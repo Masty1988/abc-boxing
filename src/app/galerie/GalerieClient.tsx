@@ -10,6 +10,7 @@ interface TimelineEvent {
   title: string;
   description: string;
   highlight?: boolean;
+  imagePath?: string; // Chemin vers l'image (ex: /images/timeline/fondation_2003.jpg)
 }
 
 const timelineEvents: TimelineEvent[] = [
@@ -17,33 +18,39 @@ const timelineEvents: TimelineEvent[] = [
     year: "2003",
     title: "Fondation du club",
     description: "Le club ABC Boxing a été créé en mars 2003 par Jean-Michel, président fondateur, et Tony Herpin, moniteur. Dès ses débuts, le club s'inscrit dans une dynamique de développement et de transmission autour des sports de combat.",
+    imagePath: "/images/timeline/fondation_2003.jpg",
   },
   {
     year: "2005",
     title: "Nouvelle direction",
     description: "En avril 2005, le club est repris par Vincent, moniteur, et Nathalie Joly, présidente. Ensemble, ils donnent une nouvelle impulsion à ABC Boxing en structurant l'association et en misant fortement sur la formation des encadrants.",
+    imagePath: "/images/timeline/direction_2005.jpg",
   },
   {
     year: "2011",
     title: "Titre Mondial",
     description: "ABC Boxing brille sur la scène internationale avec Mélanie Lete, qui décroche les titres de Championne de France et Championne du Monde. Un exploit historique pour le club rochelais.",
     highlight: true,
+    imagePath: "/images/timeline/mondial_2011.jpg",
   },
   {
     year: "2017",
     title: "Création section K-1",
     description: "Dans une volonté d'évolution et d'ouverture, la section Kick Boxing / K-1 est créée. Elle est aujourd'hui encadrée par Maya, Jean-Sébastien et Vincent, contribuant à la diversification et au dynamisme sportif du club.",
+    imagePath: "/images/timeline/k1_2017.jpg",
   },
   {
     year: "2024",
     title: "Championnat de France",
     description: "Le club se déplace en Guadeloupe pour les Championnats de France, où Cali Joly obtient une belle 4ᵉ place nationale. ABC Boxing continue de briller au niveau national.",
     highlight: true,
+    imagePath: "/images/timeline/france_2024.jpg",
   },
   {
     year: "Aujourd'hui",
     title: "Un club en mouvement",
     description: "Fort de son histoire, de ses valeurs et de son engagement, ABC Boxing continue de former, d'encadrer et d'accompagner ses licenciés, du loisir à la compétition, avec passion et ambition.",
+    imagePath: "/images/timeline/aujourdhui.jpg",
   },
 ];
 
@@ -126,8 +133,21 @@ export function GalerieClient({ images }: GalerieClientProps) {
                 </div>
               </div>
 
-              {/* Espace vide de l'autre côté */}
-              <div className="w-[calc(50%-2rem)]" />
+              {/* Photo de l'événement de l'autre côté */}
+              <div className="w-[calc(50%-2rem)]">
+                {event.imagePath && (
+                  <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg">
+                    <Image
+                      src={event.imagePath}
+                      alt={`${event.title} - ${event.year}`}
+                      fill
+                      className="object-cover"
+                    />
+                    {/* Overlay subtle pour le style */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

@@ -60,3 +60,19 @@ model SiteImage {
   category    String?  // UI, COMBAT, ENTRAINEMENT, AUTRE
   updatedAt   DateTime @updatedAt
 }
+
+model Event {
+  id          String   @id @default(cuid())
+  titre       String
+  description String
+  date        DateTime // Date et heure de l'événement
+  lieu        String?  // Ex: "Gymnase Descartes"
+  prix        Float?   // Prix en euros (optionnel, null = gratuit)
+  imageUrl    String?  // URL de l'image (Cloudinary ou autre)
+  lienReservation String? // URL externe pour réserver (si applicable)
+  publie      Boolean  @default(true) // Permet de masquer un événement
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date])
+}
