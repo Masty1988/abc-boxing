@@ -53,38 +53,38 @@ export async function getImages(): Promise<SiteImages> {
 
   return {
     // UI
-    "ui-logo-club": cloudinaryImages["ui-logo-club"] || "/images/placeholder.jpg",
-    "ui-hero-accueil": cloudinaryImages["ui-hero-accueil"] || "/images/placeholder.jpg",
-    "ui-background-contact": cloudinaryImages["ui-background-contact"] || "/images/placeholder.jpg",
-    "ui-club-histoire": cloudinaryImages["ui-club-histoire"] || "/images/placeholder.jpg",
-    "ui-trophees": cloudinaryImages["ui-trophees"] || "/images/placeholder.jpg",
+    "ui-logo-club": cloudinaryImages["ui-logo-club"] || "/images/placeholder.svg",
+    "ui-hero-accueil": cloudinaryImages["ui-hero-accueil"] || "/images/placeholder.svg",
+    "ui-background-contact": cloudinaryImages["ui-background-contact"] || "/images/placeholder.svg",
+    "ui-club-histoire": cloudinaryImages["ui-club-histoire"] || "/images/placeholder.svg",
+    "ui-trophees": cloudinaryImages["ui-trophees"] || "/images/placeholder.svg",
 
     // Combat
-    "combat-gala-principal": cloudinaryImages["combat-gala-principal"] || "/images/placeholder.jpg",
-    "combat-champion-1": cloudinaryImages["combat-champion-1"] || "/images/placeholder.jpg",
-    "combat-champion-2": cloudinaryImages["combat-champion-2"] || "/images/placeholder.jpg",
+    "combat-gala-principal": cloudinaryImages["combat-gala-principal"] || "/images/placeholder.svg",
+    "combat-champion-1": cloudinaryImages["combat-champion-1"] || "/images/placeholder.svg",
+    "combat-champion-2": cloudinaryImages["combat-champion-2"] || "/images/placeholder.svg",
 
     // Entraînement
-    "entrainement-groupe-1": cloudinaryImages["entrainement-groupe-1"] || "/images/placeholder.jpg",
-    "entrainement-coach": cloudinaryImages["entrainement-coach"] || "/images/placeholder.jpg",
-    "entrainement-technique": cloudinaryImages["entrainement-technique"] || "/images/placeholder.jpg",
+    "entrainement-groupe-1": cloudinaryImages["entrainement-groupe-1"] || "/images/placeholder.svg",
+    "entrainement-coach": cloudinaryImages["entrainement-coach"] || "/images/placeholder.svg",
+    "entrainement-technique": cloudinaryImages["entrainement-technique"] || "/images/placeholder.svg",
 
     // Galerie Palmarès
-    "palmares-trophees-1": cloudinaryImages["palmares-trophees-1"] || "/images/placeholder.jpg",
-    "palmares-trophees-2": cloudinaryImages["palmares-trophees-2"] || "/images/placeholder.jpg",
-    "palmares-trophees-3": cloudinaryImages["palmares-trophees-3"] || "/images/placeholder.jpg",
-    "palmares-medailles-1": cloudinaryImages["palmares-medailles-1"] || "/images/placeholder.jpg",
+    "palmares-trophees-1": cloudinaryImages["palmares-trophees-1"] || "/images/placeholder.svg",
+    "palmares-trophees-2": cloudinaryImages["palmares-trophees-2"] || "/images/placeholder.svg",
+    "palmares-trophees-3": cloudinaryImages["palmares-trophees-3"] || "/images/placeholder.svg",
+    "palmares-medailles-1": cloudinaryImages["palmares-medailles-1"] || "/images/placeholder.svg",
 
     // Galerie Salle
-    "salle-vue-generale": cloudinaryImages["salle-vue-generale"] || "/images/placeholder.jpg",
-    "salle-sacs": cloudinaryImages["salle-sacs"] || "/images/placeholder.jpg",
-    "salle-ring": cloudinaryImages["salle-ring"] || "/images/placeholder.jpg",
-    "salle-entrainement-1": cloudinaryImages["salle-entrainement-1"] || "/images/placeholder.jpg",
+    "salle-vue-generale": cloudinaryImages["salle-vue-generale"] || "/images/placeholder.svg",
+    "salle-sacs": cloudinaryImages["salle-sacs"] || "/images/placeholder.svg",
+    "salle-ring": cloudinaryImages["salle-ring"] || "/images/placeholder.svg",
+    "salle-entrainement-1": cloudinaryImages["salle-entrainement-1"] || "/images/placeholder.svg",
 
     // Galerie Ring
-    "ring-combat-1": cloudinaryImages["ring-combat-1"] || "/images/placeholder.jpg",
-    "ring-combat-2": cloudinaryImages["ring-combat-2"] || "/images/placeholder.jpg",
-    "ring-victoire-1": cloudinaryImages["ring-victoire-1"] || "/images/placeholder.jpg",
-    "ring-podium-1": cloudinaryImages["ring-podium-1"] || "/images/placeholder.jpg",
+    "ring-combat-1": cloudinaryImages["ring-combat-1"] || "/images/placeholder.svg",
+    "ring-combat-2": cloudinaryImages["ring-combat-2"] || "/images/placeholder.svg",
+    "ring-victoire-1": cloudinaryImages["ring-victoire-1"] || "/images/placeholder.svg",
+    "ring-podium-1": cloudinaryImages["ring-podium-1"] || "/images/placeholder.svg",
   };
 }

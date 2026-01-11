@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Button, Card } from "@/components/ui";
+import { Button, Card, OptimizedImage } from "@/components/ui";
 import { IconCalendar, IconClock, IconPhone, IconMapPin } from "@/components/icons";
 import { HORAIRES, CONTACT } from "@/lib/constants";
 import { prisma } from "@/lib/prisma";
@@ -24,13 +23,12 @@ export default async function HomePage() {
       {/* HERO */}
       <section className="relative h-[75vh] min-h-[500px] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         {/* Image de fond Cloudinary */}
-        <Image
+        <OptimizedImage
           src={images["ui-hero-accueil"]}
           alt="ABC Boxing Club"
           fill
           className="object-cover"
           priority
-          quality={85}
         />
 
         {/* Overlay sombre pour lisibilité */}
@@ -39,8 +37,15 @@ export default async function HomePage() {
         {/* Contenu */}
         <div className="relative z-10 flex flex-col items-center">
           {/* Logo avec animation bounce */}
-          <div className="w-20 h-20 rounded-full bg-red-500/20 backdrop-blur-md border-2 border-red-500/50 flex items-center justify-center mb-6 animate-bounce">
-            <span className="text-4xl">🥊</span>
+          <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-red-500/50 shadow-2xl mb-6 animate-bounce">
+            <OptimizedImage
+              src="/images/abc-boxing.jpg"
+              alt="ABC Boxing Logo"
+              width={96}
+              height={96}
+              className="object-cover"
+              priority
+            />
           </div>
 
           <h1 className="text-4xl md:text-5xl font-black mb-4 leading-tight">
@@ -99,12 +104,11 @@ export default async function HomePage() {
             {/* Image ou placeholder */}
             <div className="h-48 relative bg-gradient-to-br from-red-900 to-red-700 flex items-center justify-center">
               {prochainEvent.imageUrl ? (
-                <Image
+                <OptimizedImage
                   src={prochainEvent.imageUrl}
                   alt={prochainEvent.titre}
                   fill
                   className="object-cover"
-                  loading="lazy"
                 />
               ) : (
                 <div className="text-center">
@@ -156,6 +160,7 @@ export default async function HomePage() {
           </Card>
         </section>
       )}
+      
 
       {/* LOCALISATION RAPIDE */}
       <section className="px-4 py-8">

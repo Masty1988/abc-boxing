@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import { Card, Button } from "@/components/ui";
+import { Card, Button, OptimizedImage } from "@/components/ui";
 import { IconGloves, IconShield, IconTrophy } from "@/components/icons";
 
 export default function DisciplinesPage() {
@@ -24,7 +23,7 @@ export default function DisciplinesPage() {
         <Card className="overflow-hidden" hover={false}>
           {/* Image Hero BF */}
           <div className="h-56 relative bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
-            <Image
+            <OptimizedImage
               src="/images/disciplines/boxe-francaise.jpg"
               alt="Boxe Française"
               fill
@@ -135,7 +134,7 @@ export default function DisciplinesPage() {
         <Card className="overflow-hidden" hover={false}>
           {/* Image Hero K1 */}
           <div className="h-56 relative bg-gradient-to-br from-orange-900 to-red-700 flex items-center justify-center">
-            <Image
+            <OptimizedImage
               src="/images/disciplines/kickboxing-k1.jpg"
               alt="Kickboxing K1"
               fill

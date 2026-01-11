@@ -178,3 +178,8 @@ export const ToggleTabs: React.FC<ToggleTabsProps> = ({
     ))}
   </div>
 );
+
+// =============================================================================
+// OPTIMIZED IMAGE
+// =============================================================================
+export { OptimizedImage } from "./OptimizedImage";
