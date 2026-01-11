@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-// import { Header, MobileNav, Footer } from "@/components/layout"; // Désactivé pour Coming Soon
+import { Header, MobileNav } from "@/components/layout";
 
 export const metadata: Metadata = {
-  title: "ABC Boxing La Rochelle - Bientôt disponible",
-  description: "Le nouveau site ABC Boxing Club La Rochelle arrive bientôt ! Boxe Française, Savate et Kickboxing.",
+  title: "ABC Boxing La Rochelle - Savate, Boxe Française & Kickboxing",
+  description: "ABC Boxing Club La Rochelle : club de Boxe Française, Savate et Kickboxing K-1. Cours pour enfants et adultes, loisir et compétition.",
   manifest: "/manifest.json",
 };
 
@@ -28,8 +28,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className="antialiased bg-black">
-        {/* Coming Soon - Layout simple sans navigation */}
+        <Header />
         {children}
+        <MobileNav />
       </body>
     </html>
   );

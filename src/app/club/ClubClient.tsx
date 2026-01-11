@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Card } from "@/components/ui";
-import { IconTrophy, IconMapPin } from "@/components/icons";
+import { IconTrophy, IconMapPin, IconFacebook, IconInstagram, IconTikTok, IconYouTube } from "@/components/icons";
 import { STAFF, CLUB_STATS, CONTACT } from "@/lib/constants";
 import type { SiteImages } from "@/lib/get-images";
 
@@ -36,16 +36,28 @@ const RING_PHOTOS = [
   "ring-podium-1",
 ];
 
+// Photos engagement Octobre Rose (statiques)
+const OCTOBRE_ROSE_PHOTOS = [
+  "/images/engage/ui-logo-rose.jpg",
+  "/images/engage/ui-octobrerose.jpg",
+  "/images/engage/ui-octobrerose-2.jpg",
+  "/images/engage/ui-octobrerose-3.jpg",
+  "/images/engage/engage.jpg",
+  "/images/engage/engage2.jpg",
+];
+
 export function ClubClient({ images, totalAdherents }: ClubClientProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalPhotos, setModalPhotos] = useState<string[]>([]);
   const [modalTitle, setModalTitle] = useState("");
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [isStaticPhotos, setIsStaticPhotos] = useState(false); // Pour différencier photos statiques vs Cloudinary
 
-  const openModal = (photos: string[], title: string) => {
+  const openModal = (photos: string[], title: string, useStatic = false) => {
     setModalPhotos(photos);
     setModalTitle(title);
     setCurrentPhotoIndex(0);
+    setIsStaticPhotos(useStatic);
     setModalOpen(true);
   };
 
@@ -201,6 +213,39 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
         </Card>
       </section>
 
+      {/* Notre Engagement - Octobre Rose */}
+      <section className="px-6 py-8">
+        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <span className="text-2xl">💗</span>
+          Notre Engagement
+        </h2>
+        <Card
+          className="overflow-hidden cursor-pointer group"
+          hover={true}
+          onClick={() => openModal(OCTOBRE_ROSE_PHOTOS, "Octobre Rose - Ensemble contre le cancer du sein", true)}
+        >
+          <div className="h-48 relative">
+            <Image
+              src="/images/engage/ui-logo-rose.jpg"
+              alt="Octobre Rose"
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+              <div className="bg-pink-500/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
+                <span className="text-2xl">💗</span>
+                <span className="font-bold text-white">
+                  +{OCTOBRE_ROSE_PHOTOS.length} photos
+                </span>
+              </div>
+            </div>
+          </div>
+        </Card>
+        <p className="text-gray-400 text-sm mt-3 italic text-center">
+          ABC Boxing s&apos;engage chaque année pour Octobre Rose. Ensemble, nous soutenons la lutte contre le cancer du sein.
+        </p>
+      </section>
+
       {/* L'Équipe - Style Timeline */}
       <section className="px-6 py-8">
         <h2 className="text-xl font-bold mb-6 text-center">L&apos;Équipe Encadrante</h2>
@@ -246,6 +291,64 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Réseaux Sociaux */}
+      <section className="px-6 py-8">
+        <h2 className="text-xl font-bold mb-4 text-center">Suivez-nous</h2>
+        <p className="text-gray-400 text-sm text-center mb-6">
+          Restez connectés avec ABC Boxing sur les réseaux sociaux
+        </p>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <a
+            href="https://www.facebook.com/Abcboxinglarochelle"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-3 p-4 bg-white/5 hover:bg-blue-600/20 rounded-xl transition-all group"
+          >
+            <IconFacebook className="w-10 h-10 text-blue-500 group-hover:scale-110 transition-transform" />
+            <span className="text-sm font-medium text-gray-400 group-hover:text-blue-400">Facebook</span>
+          </a>
+          <a
+            href="https://www.instagram.com/abcboxingboxefrancaisekick/?hl=fr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-3 p-4 bg-white/5 hover:bg-pink-600/20 rounded-xl transition-all group"
+          >
+            <IconInstagram className="w-10 h-10 text-pink-500 group-hover:scale-110 transition-transform" />
+            <span className="text-sm font-medium text-gray-400 group-hover:text-pink-400">Instagram</span>
+          </a>
+          <a
+            href="https://www.tiktok.com/@abcboxingboxefran"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-3 p-4 bg-white/5 hover:bg-gray-800/20 rounded-xl transition-all group"
+          >
+            <IconTikTok className="w-10 h-10 text-white group-hover:scale-110 transition-transform" />
+            <span className="text-sm font-medium text-gray-400 group-hover:text-white">TikTok</span>
+          </a>
+          <a
+            href="https://www.youtube.com/@abcboxing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-col items-center gap-3 p-4 bg-white/5 hover:bg-red-600/20 rounded-xl transition-all group"
+          >
+            <IconYouTube className="w-10 h-10 text-red-500 group-hover:scale-110 transition-transform" />
+            <span className="text-sm font-medium text-gray-400 group-hover:text-red-400">YouTube</span>
+          </a>
+        </div>
+      </section>
+
+      {/* Mentions Légales */}
+      <section className="px-6 py-4">
+        <div className="text-center">
+          <a
+            href="/mentions-legales"
+            className="text-sm text-gray-500 hover:text-red-400 transition-colors underline"
+          >
+            Mentions Légales
+          </a>
         </div>
       </section>
 
@@ -309,7 +412,11 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
             {/* Image */}
             <div className="relative aspect-[4/3] bg-black rounded-lg overflow-hidden">
               <Image
-                src={images[modalPhotos[currentPhotoIndex]] || images["ui-hero-accueil"]}
+                src={
+                  isStaticPhotos
+                    ? modalPhotos[currentPhotoIndex]
+                    : (images[modalPhotos[currentPhotoIndex] as keyof SiteImages] || images["ui-hero-accueil"])
+                }
                 alt={`${modalTitle} ${currentPhotoIndex + 1}`}
                 fill
                 className="object-contain"
@@ -348,7 +455,11 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
                   }`}
                 >
                   <Image
-                    src={images[photo] || images["ui-hero-accueil"]}
+                    src={
+                      isStaticPhotos
+                        ? photo
+                        : (images[photo as keyof SiteImages] || images["ui-hero-accueil"])
+                    }
                     alt={`Miniature ${idx + 1}`}
                     fill
                     className="object-cover"

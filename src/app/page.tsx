@@ -4,8 +4,12 @@ import { Button, Card } from "@/components/ui";
 import { IconCalendar, IconClock, IconPhone, IconMapPin } from "@/components/icons";
 import { HORAIRES, CONTACT } from "@/lib/constants";
 import { prisma } from "@/lib/prisma";
+import { getImages } from "@/lib/get-images";
 
 export default async function HomePage() {
+  // Récupérer les images Cloudinary
+  const images = await getImages();
+
   // Récupérer le prochain événement publié
   const prochainEvent = await prisma.event.findFirst({
     where: {
@@ -18,9 +22,19 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-[#121212] text-white pb-24">
       {/* HERO */}
-      <section className="relative h-[75vh] min-h-[500px] flex flex-col items-center justify-center text-center px-6 bg-gradient-to-br from-red-900 via-black to-gray-900">
-        {/* Overlay sombre pour effet */}
-        <div className="absolute inset-0 bg-black/40" />
+      <section className="relative h-[75vh] min-h-[500px] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        {/* Image de fond Cloudinary */}
+        <Image
+          src={images["ui-hero-accueil"]}
+          alt="ABC Boxing Club"
+          fill
+          className="object-cover"
+          priority
+          quality={85}
+        />
+
+        {/* Overlay sombre pour lisibilité */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80" />
 
         {/* Contenu */}
         <div className="relative z-10 flex flex-col items-center">
@@ -36,9 +50,10 @@ export default async function HomePage() {
           </h1>
 
           <p className="text-gray-300 text-lg max-w-md mb-6">
-            ABC Boxing Club La Rochelle — Savate, Boxe Française, Kickboxing
+            ABC Boxing 
+            <br></br>
+          <span style={{ color: "#ef4444" }}>Boxe Française • Kickboxing • La Rochelle</span>
           </p>
-
           <div className="flex flex-col sm:flex-row gap-3">
             <Link href="/inscription">
               <Button size="lg">S&apos;inscrire</Button>
