@@ -340,17 +340,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
         </div>
       </section>
 
-      {/* Mentions Légales */}
-      <section className="px-6 py-4">
-        <div className="text-center">
-          <a
-            href="/mentions-legales"
-            className="text-sm text-gray-500 hover:text-red-400 transition-colors underline"
-          >
-            Mentions Légales
-          </a>
-        </div>
-      </section>
+      
 
       {/* Google Maps */}
       <section className="px-6 py-8">

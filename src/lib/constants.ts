@@ -44,7 +44,7 @@ export const TARIFS: Tarif[] = [
     discipline: "Boxe Française & Kickboxing",
     category: "adultes",
     type: "loisir",
-    name: "Boxe Française & K1",
+    name: "Boxe Française & Kickboxing",
     price: 145,
     features: ["Accès BF + Kickboxing", "Cours illimités", "Assurance incluse"],
   },

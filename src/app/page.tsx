@@ -162,21 +162,51 @@ export default async function HomePage() {
       )}
       
 
-      {/* LOCALISATION RAPIDE */}
-      <section className="px-4 py-8">
-        <Card className="p-6" hover={false}>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-red-500/20 rounded-xl">
-                <IconMapPin className="text-red-400" />
-              </div>
-              <div>
-                <h3 className="font-bold text-white">Nous trouver</h3>
-                <p className="text-sm text-gray-400">{CONTACT.fullAddress}</p>
-              </div>
-            </div>
+      {/* Google Maps */}
+      <section className="px-6 py-8">
+        <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
+          <IconMapPin />
+          Nous trouver
+        </h2>
+        <Card className="overflow-hidden" hover={false}>
+          <div className="h-64 relative">
+            <iframe
+              src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(
+                CONTACT.fullAddress
+              )}`}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+          <div className="p-4">
+            <p className="text-sm text-gray-400">{CONTACT.fullAddress}</p>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                CONTACT.fullAddress
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-red-400 text-sm hover:underline mt-2 inline-block"
+            >
+              Ouvrir dans Google Maps →
+            </a>
           </div>
         </Card>
+      </section>
+      {/* Mentions Légales */}
+      <section className="px-6 py-4">
+        <div className="text-center">
+          <a
+            href="/mentions-legales"
+            className="text-sm text-gray-500 hover:text-red-400 transition-colors underline"
+          >
+            Mentions Légales
+          </a>
+        </div>
       </section>
     </div>
   );
