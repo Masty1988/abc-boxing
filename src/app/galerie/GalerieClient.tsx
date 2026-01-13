@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { Card, OptimizedImage } from "@/components/ui";
+import { AnimatedBoxingGlove, IconNewspaper, IconTrophy } from "@/components/icons";
 import { STAFF } from "@/lib/constants";
-import type { SiteImages } from "@/lib/get-images";
 
 interface TimelineEvent {
   year: string;
@@ -56,10 +56,6 @@ const timelineEvents: TimelineEvent[] = [
   },
 ];
 
-interface GalerieClientProps {
-  images: SiteImages;
-}
-
 // Articles de presse (tous les 8)
 const pressArticles = [
   { id: 1, image: "/images/presse/histoire-journaux-1.jpg", caption: "Événement club" },
@@ -72,7 +68,7 @@ const pressArticles = [
   { id: 8, image: "/images/presse/histoire-journaux-8.jpg", caption: "Cali Joly" },
 ];
 
-export function GalerieClient({ images }: GalerieClientProps) {
+export function GalerieClient() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(0);
 
@@ -153,12 +149,12 @@ export function GalerieClient({ images }: GalerieClientProps) {
                 <div className="flex flex-wrap gap-2 mb-3">
                   {event.highlight && (
                     <div className="inline-flex items-center gap-1 px-2 py-1 bg-red-500/20 text-red-400 rounded-full text-xs font-bold">
-                      🏆 Moment clé
+                      <IconTrophy className="w-3 h-3" /> Moment clé
                     </div>
                   )}
                   {event.pressArticles && event.pressArticles.length > 0 && (
                     <div className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-bold">
-                      📰 Revue de presse
+                      <IconNewspaper className="w-3 h-3" /> Revue de presse
                     </div>
                   )}
                 </div>
@@ -179,8 +175,8 @@ export function GalerieClient({ images }: GalerieClientProps) {
 
         {/* Indicateur fin de timeline */}
         <div className="flex flex-col items-center mt-12 gap-3">
-          <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
-            <span className="text-2xl">🥊</span>
+          <div className="w-16 h-16 rounded-full bg-red-500/20 flex items-center justify-center">
+            <AnimatedBoxingGlove className="w-12 h-12" autoplay loop />
           </div>
           <p className="text-red-400 text-sm font-bold uppercase tracking-wider">
             À suivre...
@@ -191,7 +187,9 @@ export function GalerieClient({ images }: GalerieClientProps) {
       {/* Citation finale */}
       <section className="px-6 py-12 mt-16">
         <Card className="p-8 text-center bg-gradient-to-br from-red-900/20 to-orange-900/20 border-red-500/30">
-          <div className="text-4xl mb-4">🥊</div>
+          <div className="mb-4 flex justify-center">
+            <AnimatedBoxingGlove className="w-16 h-16" />
+          </div>
           <p className="text-lg font-bold text-white mb-2">
             &quot;L&apos;histoire s&apos;écrit chaque jour sur le ring&quot;
           </p>
@@ -204,7 +202,7 @@ export function GalerieClient({ images }: GalerieClientProps) {
       {/* Section Revue de Presse */}
       <section className="px-6 py-12">
         <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
-          <span>📰</span>
+          <IconNewspaper className="w-6 h-6 text-blue-400" />
           Ils parlent de nous
         </h2>
         <p className="text-gray-400 text-sm mb-6 leading-relaxed">
@@ -224,7 +222,7 @@ export function GalerieClient({ images }: GalerieClientProps) {
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
               <div className="bg-blue-500/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
-                <span className="text-2xl">📰</span>
+                <IconNewspaper className="w-6 h-6 text-white" />
                 <span className="font-bold text-white">
                   +{pressArticles.length} articles
                 </span>

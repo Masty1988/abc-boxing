@@ -83,6 +83,7 @@ export default function MentionsLegalesPage() {
             <p><strong>Site web :</strong> <a href="https://www.mastywebdev.fr" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:underline">www.mastywebdev.fr</a></p>
             <p><strong>Technologies :</strong> Next.js 14, React, TypeScript, Tailwind CSS</p>
             <p><strong>Photos :</strong> © ABC Boxing La Rochelle</p>
+            <p><strong>Icônes animées :</strong> <a href="https://lordicon.com/" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:underline">Lordicon.com</a></p>
           </div>
         </Card>
 

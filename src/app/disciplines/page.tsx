@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Card, Button, OptimizedImage } from "@/components/ui";
-import { IconGloves, IconShield, IconTrophy } from "@/components/icons";
+import { AnimatedBoxingGlove, IconShield, IconTrophy, IconScale, IconScroll } from "@/components/icons";
 
 export default function DisciplinesPage() {
   return (
@@ -33,7 +33,7 @@ export default function DisciplinesPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="relative z-10 text-center">
               <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-blue-500/20 backdrop-blur-md border-2 border-blue-500/50 flex items-center justify-center">
-                <IconGloves className="w-8 h-8 text-blue-400" />
+                <AnimatedBoxingGlove className="w-16 h-16" />
               </div>
               <h2 className="text-3xl font-black text-white">Boxe Française</h2>
               <p className="text-blue-200 text-sm mt-1">Savate - Sport Noble</p>
@@ -44,7 +44,7 @@ export default function DisciplinesPage() {
             {/* Histoire */}
             <div>
               <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                <span className="text-blue-400">📜</span>
+                <IconScroll className="w-5 h-5 text-blue-400" />
                 Histoire
               </h3>
               <p className="text-gray-300 text-sm leading-relaxed">
@@ -59,7 +59,7 @@ export default function DisciplinesPage() {
             {/* Règles */}
             <div>
               <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                <span className="text-blue-400">⚖️</span>
+                <IconScale className="w-5 h-5 text-blue-400" />
                 Règles & Caractéristiques
               </h3>
               <ul className="space-y-2 text-sm text-gray-300">
@@ -155,7 +155,7 @@ export default function DisciplinesPage() {
             {/* Histoire */}
             <div>
               <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                <span className="text-orange-400">📜</span>
+                <IconScroll className="w-5 h-5 text-orange-400" />
                 Histoire
               </h3>
               <p className="text-gray-300 text-sm leading-relaxed">
@@ -170,7 +170,7 @@ export default function DisciplinesPage() {
             {/* Règles */}
             <div>
               <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-                <span className="text-orange-400">⚖️</span>
+                <IconScale className="w-5 h-5 text-orange-400" />
                 Règles & Caractéristiques
               </h3>
               <ul className="space-y-2 text-sm text-gray-300">
@@ -226,7 +226,7 @@ export default function DisciplinesPage() {
             {/* Différence avec Boxe Française */}
             <div className="bg-gradient-to-br from-orange-500/10 to-red-900/10 border border-orange-500/20 rounded-xl p-4">
               <h4 className="font-bold text-white mb-2 flex items-center gap-2">
-                <IconGloves className="w-5 h-5 text-orange-400" />
+                <AnimatedBoxingGlove className="w-16 h-16" />
                 K-1 vs Boxe Française
               </h4>
               <p className="text-gray-300 text-xs leading-relaxed">

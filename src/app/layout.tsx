@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Header, MobileNav } from "@/components/layout";
+import { ScrollToTop } from "@/components/ui";
 
 export const metadata: Metadata = {
   title: "ABC Boxing La Rochelle - Savate, Boxe Française & Kickboxing",
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Header />
         {children}
         <MobileNav />
+        <ScrollToTop />
       </body>
     </html>
   );

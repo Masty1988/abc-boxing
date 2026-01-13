@@ -22,11 +22,13 @@ interface OptimizedImageProps extends Omit<ImageProps, 'loading' | 'quality'> {
 export function OptimizedImage({
   priority = false,
   quality = 85,
+  alt,
   ...props
 }: OptimizedImageProps) {
   return (
     <Image
       {...props}
+      alt={alt}
       priority={priority}
       loading={priority ? undefined : "lazy"}
       quality={quality}

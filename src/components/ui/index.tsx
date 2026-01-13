@@ -183,3 +183,8 @@ export const ToggleTabs: React.FC<ToggleTabsProps> = ({
 // OPTIMIZED IMAGE
 // =============================================================================
 export { OptimizedImage } from "./OptimizedImage";
+
+// =============================================================================
+// SCROLL TO TOP
+// =============================================================================
+export { ScrollToTop } from "./ScrollToTop";
