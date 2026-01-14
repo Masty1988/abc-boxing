@@ -11,7 +11,8 @@ interface TimelineEvent {
   description: string;
   highlight?: boolean;
   imagePath?: string; // Chemin vers l'image (ex: /images/timeline/fondation_2003.jpg)
-  pressArticles?: string[]; // Articles de presse associés
+  pressArticles?: string[]; // Articles de presse associés (images)
+  pressLinks?: Array<{ url: string; title: string }>; // Liens vers articles Sud Ouest
 }
 
 const timelineEvents: TimelineEvent[] = [
@@ -34,6 +35,9 @@ const timelineEvents: TimelineEvent[] = [
     highlight: true,
     imagePath: "/images/timeline/mondial_2011.jpg",
     pressArticles: ["/images/presse/histoire-journaux-2.jpg", "/images/presse/histoire-journaux-3.jpg"],
+    pressLinks: [
+      { url: "https://www.sudouest.fr/sport/boxe/la-belle-histoire-de-lete-9724065.php", title: "Sud Ouest - La belle histoire de Mélanie" }
+    ],
   },
   {
     year: "2017",
@@ -47,6 +51,9 @@ const timelineEvents: TimelineEvent[] = [
     description: "Le club se déplace en Guadeloupe pour les Championnats de France, où Cali Joly obtient une belle 4ᵉ place nationale. ABC Boxing continue de briller au niveau national.",
     highlight: true,
     imagePath: "/images/timeline/france_2024.jpg",
+    pressLinks: [
+      { url: "https://www.sudouest.fr/sport/boxe/boxe-il-faut-eteindre-la-lumiere-de-la-salle-pour-faire-sortir-la-rochelaise-cali-joly-19707783.php", title: "Sud Ouest - Cali Joly et ABC Boxing en Guadeloupe" }
+    ],
   },
   {
     year: "Aujourd'hui",
@@ -165,9 +172,30 @@ export function GalerieClient() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-gray-400 text-sm leading-relaxed mb-4">
                   {event.description}
                 </p>
+
+                {/* Liens articles de presse */}
+                {event.pressLinks && event.pressLinks.length > 0 && (
+                  <div className="space-y-2 mt-4">
+                    {event.pressLinks.map((link, idx) => (
+                      <a
+                        key={idx}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-3 py-2 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/30 hover:border-blue-500/50 rounded-lg text-blue-400 text-xs font-medium transition-all group"
+                      >
+                        <IconNewspaper className="w-4 h-4" />
+                        <span>{link.title}</span>
+                        <svg className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
             </Card>
           ))}

@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { Header, MobileNav } from "@/components/layout";
-import { ScrollToTop } from "@/components/ui";
+import { ConditionalNav } from "@/components/layout";
 
 export const metadata: Metadata = {
   title: "ABC Boxing La Rochelle - Savate, Boxe Française & Kickboxing",
@@ -29,10 +28,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className="antialiased bg-black">
-        <Header />
+        <ConditionalNav />
         {children}
-        <MobileNav />
-        <ScrollToTop />
       </body>
     </html>
   );
