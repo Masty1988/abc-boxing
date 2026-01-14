@@ -6,6 +6,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ImageManager } from "@/components/admin/ImageManager";
+import { EventImageUpload } from "@/components/dashboard/EventImageUpload";
 
 // Types
 interface Adherent {
@@ -831,37 +832,30 @@ function EventsTab() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
-                  Prix (€)
-                </label>
-                <input
-                  type="number"
-                  step="0.01"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-red-500"
-                  value={formData.prix}
-                  onChange={(e) =>
-                    setFormData({ ...formData, prix: e.target.value })
-                  }
-                  placeholder="Laisser vide si gratuit"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">
-                  URL Image
-                </label>
-                <input
-                  type="url"
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-red-500"
-                  value={formData.imageUrl}
-                  onChange={(e) =>
-                    setFormData({ ...formData, imageUrl: e.target.value })
-                  }
-                  placeholder="https://..."
-                />
-              </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">
+                Prix (€)
+              </label>
+              <input
+                type="number"
+                step="0.01"
+                className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:border-red-500"
+                value={formData.prix}
+                onChange={(e) =>
+                  setFormData({ ...formData, prix: e.target.value })
+                }
+                placeholder="Laisser vide si gratuit"
+              />
             </div>
+
+            {/* Upload image événement */}
+            <EventImageUpload
+              eventId={editingEvent?.id || null}
+              currentImageUrl={formData.imageUrl}
+              onImageUploaded={(url) =>
+                setFormData({ ...formData, imageUrl: url })
+              }
+            />
 
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">

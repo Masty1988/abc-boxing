@@ -197,6 +197,79 @@ export default async function HomePage() {
           </div>
         </Card>
       </section>
+
+      {/* Affiliations Fédérations */}
+      <section className="px-6 py-12">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold text-white mb-2">Affiliations Officielles</h2>
+          <p className="text-gray-400 text-sm">Club agréé et reconnu par les fédérations nationales</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* FFSBFDA - Boxe Française */}
+          <Card className="p-6 bg-gradient-to-br from-blue-900/20 to-blue-700/20 border-blue-500/30" hover={false}>
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="relative w-32 h-32 rounded-xl overflow-hidden bg-white p-3 shadow-lg">
+                <OptimizedImage
+                  src="/images/logofede.jpg"
+                  alt="Fédération Française de Savate Boxe Française"
+                  width={128}
+                  height={128}
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <h3 className="font-bold text-white mb-2">FFSBFDA</h3>
+                <p className="text-blue-200 text-xs leading-relaxed">
+                  Fédération Française de Savate Boxe Française et Disciplines Associées
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1.5 justify-center">
+                  <span className="px-2 py-0.5 bg-blue-500/20 text-blue-300 rounded-full text-[10px] font-medium border border-blue-500/30">
+                    ✓ Club Agréé
+                  </span>
+                  <span className="px-2 py-0.5 bg-blue-500/20 text-blue-300 rounded-full text-[10px] font-medium border border-blue-500/30">
+                    ✓ Encadrants Diplômés
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Card>
+
+          {/* FFKMDA - Kickboxing */}
+          <Card className="p-6 bg-gradient-to-br from-orange-900/20 to-red-700/20 border-orange-500/30" hover={false}>
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="relative w-32 h-32 rounded-xl overflow-hidden bg-white p-3 shadow-lg">
+                <OptimizedImage
+                  src="/images/FFKMDA-1536x635.png"
+                  alt="Fédération Française de Kickboxing Muay Thaï et Disciplines Associées"
+                  width={128}
+                  height={128}
+                  className="object-contain"
+                />
+              </div>
+              <div>
+                <h3 className="font-bold text-white mb-2">FFKMDA</h3>
+                <p className="text-orange-200 text-xs leading-relaxed">
+                  Fédération Française de Kickboxing, Muay Thaï et Disciplines Associées
+                </p>
+                <div className="mt-3 flex flex-wrap gap-1.5 justify-center">
+                  <span className="px-2 py-0.5 bg-orange-500/20 text-orange-300 rounded-full text-[10px] font-medium border border-orange-500/30">
+                    ✓ Club Affilié
+                  </span>
+                  <span className="px-2 py-0.5 bg-orange-500/20 text-orange-300 rounded-full text-[10px] font-medium border border-orange-500/30">
+                    ✓ Assurance Fédérale
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        <p className="text-center text-gray-500 text-xs mt-6">
+          Nos licenciés bénéficient d'une couverture assurance complète et d'un encadrement certifié par l'État
+        </p>
+      </section>
+
       {/* Mentions Légales */}
       <section className="px-6 py-4">
         <div className="text-center">
