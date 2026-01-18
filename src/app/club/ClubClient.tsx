@@ -103,9 +103,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
             <div>
               <h3 className="text-xl font-bold mb-2">Le Mot de la Présidente</h3>
               <p className="text-gray-400 italic leading-relaxed">
-                &quot;Bienvenue à ABC Boxing La Rochelle. Ici, on forme des
-                champions, mais surtout des humains. Le respect, le dépassement
-                de soi et la solidarité sont nos valeurs fondamentales.&quot;
+                &quot;La boxe Française allie élégance, discipline et dépssement de soi. Un club, des valeurs, une passion, chez ABC boxing, chacun sa place. Et peut-etre la tienne.&quot;
               </p>
               <p className="text-sm text-red-400 mt-3 font-medium">
                 — Nathalie, Présidente ABC Boxing

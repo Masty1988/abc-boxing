@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Card, Button, OptimizedImage } from "@/components/ui";
 import { AnimatedBoxingGlove, IconShield, IconTrophy, IconScale, IconScroll } from "@/components/icons";
+
+export const metadata: Metadata = {
+  title: "Nos Disciplines - ABC Boxing La Rochelle",
+  description: "Découvrez la Boxe Française (Savate) et le Kickboxing K-1 au club ABC Boxing La Rochelle. Sports de combat pieds-poings pour tous niveaux.",
+  openGraph: {
+    title: "Disciplines - ABC Boxing La Rochelle",
+    description: "Boxe Française et Kickboxing K-1 à La Rochelle",
+  },
+};
 
 export default function DisciplinesPage() {
   return (

@@ -116,7 +116,7 @@ export function EventImageUpload({
   return (
     <div>
       <label className="block text-sm font-medium text-slate-700 mb-2">
-        Image de l'événement
+        Image de l&apos;événement
       </label>
 
       <div className="space-y-3">

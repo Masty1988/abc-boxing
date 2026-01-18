@@ -1,9 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Button, Card, OptimizedImage } from "@/components/ui";
 import { IconCalendar, IconClock, IconPhone, IconMapPin } from "@/components/icons";
 import { HORAIRES, CONTACT } from "@/lib/constants";
 import { prisma } from "@/lib/prisma";
 import { getImages } from "@/lib/get-images";
+
+export const metadata: Metadata = {
+  title: "ABC Boxing La Rochelle - Savate, Boxe Française & Kickboxing",
+  description: "Club de Boxe Française, Savate et Kickboxing K-1 à La Rochelle. Cours pour enfants et adultes, loisir et compétition. Rejoignez-nous !",
+  openGraph: {
+    title: "ABC Boxing La Rochelle",
+    description: "Club de Boxe Française, Savate et Kickboxing à La Rochelle",
+    type: "website",
+  },
+};
 
 export default async function HomePage() {
   // Récupérer les images Cloudinary
@@ -266,7 +277,7 @@ export default async function HomePage() {
         </div>
 
         <p className="text-center text-gray-500 text-xs mt-6">
-          Nos licenciés bénéficient d'une couverture assurance complète et d'un encadrement certifié par l'État
+          Nos licenciés bénéficient d&apos;une couverture assurance complète et d&apos;un encadrement certifié par l&apos;État
         </p>
       </section>
 

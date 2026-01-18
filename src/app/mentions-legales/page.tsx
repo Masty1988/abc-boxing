@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import { Card } from "@/components/ui";
 import { CONTACT } from "@/lib/constants";
+
+export const metadata: Metadata = {
+  title: "Mentions Légales - ABC Boxing La Rochelle",
+  description: "Mentions légales du site ABC Boxing La Rochelle. Informations sur l'éditeur, l'hébergement et la protection des données.",
+  robots: {
+    index: false,
+  },
+};
 
 export default function MentionsLegalesPage() {
   return (

@@ -43,6 +43,26 @@ export async function GET(
 // =============================================================================
 // PUT - Modifier un adhérent
 // =============================================================================
+
+// Liste blanche des champs modifiables (évite mass assignment)
+const ALLOWED_UPDATE_FIELDS = [
+  "nom",
+  "prenom",
+  "email",
+  "telephone",
+  "photo",
+  "numeroLicence",
+  "categorie",
+  "discipline",
+  "formule",
+  "combattant",
+  "paye",
+  "montant",
+  "methodePaiement",
+  "datePaiement",
+  "saison",
+] as const;
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
@@ -55,10 +75,18 @@ export async function PUT(
   try {
     const body = await request.json();
 
+    // Filtrer uniquement les champs autorisés (protection mass assignment)
+    const sanitizedData: Record<string, unknown> = {};
+    for (const field of ALLOWED_UPDATE_FIELDS) {
+      if (field in body) {
+        sanitizedData[field] = body[field];
+      }
+    }
+
     const adherent = await prisma.adherent.update({
       where: { id },
       data: {
-        ...body,
+        ...sanitizedData,
         updatedAt: new Date(),
       },
     });

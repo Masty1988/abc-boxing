@@ -3,6 +3,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { v2 as cloudinary } from "cloudinary";
 import { getSlotById } from "@/config/site-images";
 
@@ -16,7 +17,7 @@ cloudinary.config({
 export async function POST(req: NextRequest) {
   try {
     // 1. Vérifier l'authentification
-    const session = await getServerSession();
+    const session = await getServerSession(authOptions);
     if (!session) {
       return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
     }
