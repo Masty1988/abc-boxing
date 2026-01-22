@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Documentation/recap files (may contain sensitive info)
+AJUSTEMENTS-FINAUX.md
+AUDIT-REPORT.md
+CLOUDINARY-INTEGRATION.md
+MAPPING-IMAGES.md
+PHOTOS-A-PREPARER.md
+SESSION-RECAP.md
+SETUP-IMAGE-MANAGER.md
+V1-DIMANCHE-RECAP.md
+*-RECAP.md
+*-recap.md
