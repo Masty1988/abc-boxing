@@ -17,6 +17,7 @@ export function EventImageUpload({
   const [uploading, setUploading] = useState(false);
   const [preview, setPreview] = useState(currentImageUrl);
   const [error, setError] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,7 +71,7 @@ export function EventImageUpload({
       formData.append("folder", signatureData.folder);
       formData.append("public_id", signatureData.publicId);
       formData.append("overwrite", "true");
-      formData.append("invalidate", "true");
+      formData.append("invalidate", "false");
 
       const cloudinaryRes = await fetch(
         `https://api.cloudinary.com/v1_1/${signatureData.cloudName}/image/upload`,
@@ -104,6 +105,10 @@ export function EventImageUpload({
       // Mettre à jour le preview avec l'URL Cloudinary
       setPreview(cloudinaryData.secure_url);
       onImageUploaded(cloudinaryData.secure_url);
+
+      // Afficher le toast de succès
+      setShowSuccess(true);
+      setTimeout(() => setShowSuccess(false), 5000);
     } catch (err) {
       console.error("Erreur upload:", err);
       setError("Erreur lors de l'upload de l'image");
@@ -114,7 +119,16 @@ export function EventImageUpload({
   };
 
   return (
-    <div>
+    <div className="relative">
+      {/* Toast de succès */}
+      {showSuccess && (
+        <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full z-50">
+          <div className="bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap">
+            Image mise à jour ! Visible dans 1-2 min.
+          </div>
+        </div>
+      )}
+
       <label className="block text-sm font-medium text-slate-700 mb-2">
         Image de l&apos;événement
       </label>

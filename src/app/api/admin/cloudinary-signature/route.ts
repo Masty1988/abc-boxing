@@ -30,9 +30,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "slotId requis" }, { status: 400 });
     }
 
-    // 3. Vérifier que le slot existe dans la config
+    // 3. Vérifier que le slot existe dans la config OU est un slot dynamique (event-xxx)
     const slot = getSlotById(slotId);
-    if (!slot) {
+    const isEventSlot = slotId.startsWith("event-");
+
+    if (!slot && !isEventSlot) {
       return NextResponse.json(
         { error: "Slot invalide" },
         { status: 400 }
@@ -47,7 +49,7 @@ export async function POST(req: NextRequest) {
       folder: "abc-boxing-assets",
       public_id: slotId, // ⚠️ On force le public_id = slot.id
       overwrite: true, // ⚠️ Écrase l'image existante
-      invalidate: true, // Purge le cache CDN
+      invalidate: false, // Purge le cache CDN
     };
 
     const signature = cloudinary.utils.api_sign_request(

@@ -11,12 +11,13 @@ interface ClubClientProps {
   totalAdherents: number;
 }
 
-// Photos palmarès (Cloudinary slots à créer)
+// Photos palmarès du club
 const PALMARES_PHOTOS = [
   "palmares-trophees-1",
   "palmares-trophees-2",
   "palmares-trophees-3",
   "palmares-medailles-1",
+  
 ];
 
 // Photos salle d'entraînement
@@ -34,6 +35,7 @@ const RING_PHOTOS = [
   "ring-victoire-1",
   "ring-podium-1",
 ];
+
 
 // Photos engagement Octobre Rose (statiques)
 const OCTOBRE_ROSE_PHOTOS = [
@@ -79,8 +81,10 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
     if (stat.label === "Adhérents actifs") {
       return { ...stat, value: `${totalAdherents}` };
     }
-    return stat;
-  });
+    else {
+      return stat;
+    }
+    });
 
   return (
     <div className="min-h-screen bg-[#121212] text-white pb-24">
@@ -98,6 +102,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
                 alt="Présidente"
                 fill
                 className="object-cover"
+                imageSize="thumbnail"
               />
             </div>
             <div>
@@ -132,6 +137,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
               alt="Trophées"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
+              imageSize="card"
             />
             {/* Overlay avec compteur */}
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
@@ -170,7 +176,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
               alt="Salle d'entraînement"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
-              
+              imageSize="card"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
               <div className="bg-red-500/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
@@ -194,11 +200,12 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
         >
           <div className="h-48 relative">
             <OptimizedImage
-              src={images["combat-champion-1"]}
+              src={images["ring-combat-1"]}
               alt="Ring de combat"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
-               />
+              imageSize="card"
+            />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
               <div className="bg-red-500/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
                 <span className="text-2xl">🥊</span>
@@ -228,6 +235,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
               alt="Octobre Rose"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
+              imageSize="card"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
               <div className="bg-pink-500/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
@@ -254,7 +262,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
         <div className="flex justify-center gap-8 flex-wrap">
           {STAFF.map((member, index) => {
             const staffPhotoPath = `/images/staff/staff_${member.name.toLowerCase()}.jpg`;
-            const hasPhoto = false; // 🔧 Mettre à true quand photos uploadées
+            const hasPhoto = false; // Mettre a true quand photos uploadees
 
             return (
               <div key={index} className="text-center">
@@ -268,6 +276,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
                         alt={member.name}
                         fill
                         className="object-cover"
+                        imageSize="thumbnail"
                       />
                     ) : (
                       <span className="text-3xl font-black text-white">
@@ -427,6 +436,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
                 alt={`${modalTitle} ${currentPhotoIndex + 1}`}
                 fill
                 className="object-contain"
+                imageSize="hero"
               />
             </div>
 
@@ -454,6 +464,7 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
                     alt={`Miniature ${idx + 1}`}
                     fill
                     className="object-cover"
+                    imageSize="thumbnail"
                   />
                 </button>
               ))}

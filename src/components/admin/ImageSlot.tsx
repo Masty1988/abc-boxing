@@ -14,6 +14,7 @@ export function ImageSlot({ slot, currentUrl, onUploadSuccess }: ImageSlotProps)
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,6 +51,14 @@ export function ImageSlot({ slot, currentUrl, onUploadSuccess }: ImageSlotProps)
 
       const signatureData = await signatureRes.json();
 
+      console.log("=== CLOUDINARY DEBUG ===");
+      console.log("Cloud Name:", signatureData.cloudName);
+      console.log("API Key:", signatureData.apiKey);
+      console.log("Timestamp:", signatureData.timestamp);
+      console.log("Signature:", signatureData.signature);
+      console.log("Folder:", signatureData.folder);
+      console.log("Public ID:", signatureData.publicId);
+
       // 2. Upload vers Cloudinary (client-side upload)
       const formData = new FormData();
       formData.append("file", file);
@@ -59,7 +68,12 @@ export function ImageSlot({ slot, currentUrl, onUploadSuccess }: ImageSlotProps)
       formData.append("folder", signatureData.folder);
       formData.append("public_id", signatureData.publicId);
       formData.append("overwrite", "true");
-      formData.append("invalidate", "true");
+      formData.append("invalidate", "false");
+
+      console.log("=== FORMDATA CONTENT ===");
+      for (const [key, value] of formData.entries()) {
+        console.log(key + ":", value);
+      }
 
       const cloudinaryRes = await fetch(
         `https://api.cloudinary.com/v1_1/${signatureData.cloudName}/image/upload`,
@@ -94,11 +108,14 @@ export function ImageSlot({ slot, currentUrl, onUploadSuccess }: ImageSlotProps)
       }
 
       setProgress(100);
+      setShowSuccess(true);
       setTimeout(() => {
         onUploadSuccess();
         setUploading(false);
         setProgress(0);
       }, 500);
+      // Masquer le toast après 5 secondes
+      setTimeout(() => setShowSuccess(false), 5000);
     } catch (err) {
       console.error("Erreur upload:", err);
       setError(err instanceof Error ? err.message : "Erreur inconnue");
@@ -108,7 +125,16 @@ export function ImageSlot({ slot, currentUrl, onUploadSuccess }: ImageSlotProps)
   };
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm hover:shadow-md transition-shadow relative">
+      {/* Toast de succès */}
+      {showSuccess && (
+        <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full z-50 animate-fade-in">
+          <div className="bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap">
+            Image mise à jour ! Visible dans 1-2 min.
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div>

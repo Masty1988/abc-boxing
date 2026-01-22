@@ -39,6 +39,7 @@ export default function DisciplinesPage() {
               fill
               className="object-cover"
               priority
+              imageSize="hero"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="relative z-10 text-center">
@@ -149,7 +150,7 @@ export default function DisciplinesPage() {
               alt="Kickboxing K1"
               fill
               className="object-cover"
-              priority
+              imageSize="hero"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             <div className="relative z-10 text-center">

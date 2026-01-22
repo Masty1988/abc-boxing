@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       },
     ],
     formats: ['image/webp', 'image/avif'],
+    qualities: [75, 85, 90], 
   },
 
   // ISR global: revalider toutes les heures pour toutes les pages

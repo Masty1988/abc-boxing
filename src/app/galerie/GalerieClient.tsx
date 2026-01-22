@@ -131,6 +131,7 @@ export function GalerieClient() {
                     alt={`${event.title} - ${event.year}`}
                     fill
                     className="object-cover"
+                    imageSize="card"
                   />
                   {/* Overlay gradient */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -247,6 +248,7 @@ export function GalerieClient() {
               alt="Revue de presse ABC Boxing"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
+              imageSize="card"
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
               <div className="bg-blue-500/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
@@ -307,6 +309,7 @@ export function GalerieClient() {
                 alt={pressArticles[selectedArticle].caption}
                 fill
                 className="object-contain"
+                imageSize="hero"
               />
             </div>
 
@@ -335,6 +338,7 @@ export function GalerieClient() {
                     alt={article.caption}
                     fill
                     className="object-cover"
+                    imageSize="thumbnail"
                   />
                 </button>
               ))}

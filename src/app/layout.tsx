@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
+    <html lang="fr" data-scroll-behavior="smooth">
       <head>
         <link rel="icon" href="/images/abc-boxing.jpg" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
