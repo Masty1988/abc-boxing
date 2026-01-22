@@ -7,10 +7,11 @@ import type { InscriptionData } from "@/lib/types";
 
 // ⚠️ IMPORTANT: Ajouter cette variable dans .env
 // RESEND_API_KEY=re_...
-const resend = new Resend(process.env.RESEND_API_KEY);
+
 
 export async function POST(request: NextRequest) {
   try {
+const resend = new Resend(process.env.RESEND_API_KEY);
     const data: InscriptionData = await request.json();
 
     // Validation basique
