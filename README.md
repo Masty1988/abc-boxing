@@ -1,6 +1,6 @@
 # ABC Boxing Club - Backend Admin
 
-## Installation
+## Installation. 
 
 ### 1. Dépendances
 
