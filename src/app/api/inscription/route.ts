@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     // Envoyer l'email à Vincent avec le PDF en pièce jointe
     const emailResult = await resend.emails.send({
       from: "ABC Boxing <service-client@mail.abcboxing.fr>", // Vrai domaine configuré sur Resend
-      to: ["nlesieur17@outlook.fr"], // Email de Vincent
+      to: ["contact@abcboxing.fr"], // Email de Vincent
       subject: `🥊 Nouvelle inscription - ${data.prenom} ${data.nom} - ${data.tarifName} - En attente de paiement`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
