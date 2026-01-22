@@ -1,4 +1,4 @@
-// src/app/api/stripe/checkout/route.ts
+// src/app/api/stripe/checkout/route.
 export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from "next/server";
