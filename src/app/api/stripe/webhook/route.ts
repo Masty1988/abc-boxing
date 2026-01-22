@@ -63,10 +63,3 @@ const body = await request.text();
 
   return NextResponse.json({ received: true });
 }
-
-// Désactiver le body parser pour Stripe webhook
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
