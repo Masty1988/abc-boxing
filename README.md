@@ -44,11 +44,7 @@ npx tsx scripts/init-photos.ts
 npm run dev
 ```
 
-Accéder à http://localhost:3000/taz
 
-**Login par défaut :**
-- Username: `taz`
-- Password: `ABC2024!`
 
 ⚠️ **CHANGER LE MOT DE PASSE EN PRODUCTION !**
 
