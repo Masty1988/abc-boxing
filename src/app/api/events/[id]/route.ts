@@ -17,13 +17,13 @@ async function checkAuth() {
 // =============================================================================
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   const authError = await checkAuth();
   if (authError) return authError;
 
   try {
-    const { id } = await params;
+    const { id } = params;
     const body = await request.json();
     const { titre, description, date, lieu, prix, imageUrl, lienReservation, publie } = body;
 
@@ -53,13 +53,13 @@ export async function PATCH(
 // =============================================================================
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   const authError = await checkAuth();
   if (authError) return authError;
 
   try {
-    const { id } = await params;
+    const { id } = params;
 
     await prisma.event.delete({
       where: { id },
