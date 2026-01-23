@@ -1,4 +1,5 @@
 // src/app/api/adherents/[id]/route.ts
+export const dynamic = 'force-dynamic';
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -17,14 +18,16 @@ async function checkAuth() {
 // =============================================================================
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authError = await checkAuth();
   if (authError) return authError;
 
+  const { id } = await params;
+
   try {
     const adherent = await prisma.adherent.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!adherent) {
@@ -41,20 +44,50 @@ export async function GET(
 // =============================================================================
 // PUT - Modifier un adhérent
 // =============================================================================
+
+// Liste blanche des champs modifiables (évite mass assignment)
+const ALLOWED_UPDATE_FIELDS = [
+  "nom",
+  "prenom",
+  "email",
+  "telephone",
+  "photo",
+  "numeroLicence",
+  "categorie",
+  "discipline",
+  "formule",
+  "combattant",
+  "paye",
+  "montant",
+  "methodePaiement",
+  "datePaiement",
+  "saison",
+] as const;
+
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authError = await checkAuth();
   if (authError) return authError;
 
+  const { id } = await params;
+
   try {
     const body = await request.json();
-    
+
+    // Filtrer uniquement les champs autorisés (protection mass assignment)
+    const sanitizedData: Record<string, unknown> = {};
+    for (const field of ALLOWED_UPDATE_FIELDS) {
+      if (field in body) {
+        sanitizedData[field] = body[field];
+      }
+    }
+
     const adherent = await prisma.adherent.update({
-      where: { id: params.id },
+      where: { id },
       data: {
-        ...body,
+        ...sanitizedData,
         updatedAt: new Date(),
       },
     });
@@ -71,14 +104,16 @@ export async function PUT(
 // =============================================================================
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authError = await checkAuth();
   if (authError) return authError;
 
+  const { id } = await params;
+
   try {
     await prisma.adherent.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });

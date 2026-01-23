@@ -5,7 +5,8 @@
       "Bash(npm run dev:*)",
       "Bash(timeout:*)",
       "Bash(git add:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(ls -la src/app/page.tsx*)"
     ]
   }
 }

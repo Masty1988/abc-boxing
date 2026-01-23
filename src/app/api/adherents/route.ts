@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { getCurrentSeason } from "@/lib/utils/season";
 
 // Vérifier l'authentification admin
 async function checkAuth() {
@@ -21,13 +22,17 @@ export async function GET(request: NextRequest) {
   if (authError) return authError;
 
   const { searchParams } = new URL(request.url);
-  const saison = searchParams.get("saison") || "2024-2025";
+  const saison = searchParams.get("saison") || getCurrentSeason();
   const paye = searchParams.get("paye");
   const combattant = searchParams.get("combattant");
 
   try {
-    const where: any = { saison };
-    
+    const where: {
+      saison: string;
+      paye?: boolean;
+      combattant?: boolean;
+    } = { saison };
+
     if (paye !== null) {
       where.paye = paye === "true";
     }
