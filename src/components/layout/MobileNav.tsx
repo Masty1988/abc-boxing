@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IconHome, IconClipboard, IconUsers, IconBook, IconGallery } from "@/components/icons";
+import { IconHome, IconClipboard, IconUsers, IconNews, IconGallery } from "@/components/icons";
 
 const navItems = [
   { href: "/", label: "Accueil", icon: IconHome },
   { href: "/inscription", label: "Inscription", icon: IconClipboard },
   { href: "/club", label: "Club", icon: IconUsers },
-  { href: "/disciplines", label: "Disciplines", icon: IconBook },
-  { href: "/galerie", label: "Histoire", icon: IconGallery },
+  { href: "/actualites", label: "News", icon: IconNews },
+  { href: "/galerie", label: "Galerie", icon: IconGallery },
 ];
 
 export const MobileNav: React.FC = () => {

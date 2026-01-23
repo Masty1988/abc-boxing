@@ -1,20 +1,16 @@
 // src/app/api/stripe/webhook/route.ts
-export const dynamic = 'force-dynamic';
-
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { prisma } from "@/lib/prisma";
 
-
-
-export async function POST(request: NextRequest) {
-  
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2025-12-15.clover",
+  apiVersion: "2023-10-16",
 });
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
-const body = await request.text();
+
+export async function POST(request: NextRequest) {
+  const body = await request.text();
   const signature = request.headers.get("stripe-signature")!;
 
   let event: Stripe.Event;
@@ -63,3 +59,10 @@ const body = await request.text();
 
   return NextResponse.json({ received: true });
 }
+
+// Désactiver le body parser pour Stripe webhook
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

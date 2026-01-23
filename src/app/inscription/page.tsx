@@ -1,20 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Card, Button, Badge, ToggleTabs } from "@/components/ui";
+import { Card, Button, Badge, ToggleTabs, SectionTitle } from "@/components/ui";
 import { TarifCard } from "@/components/inscription/TarifCard";
-import { InscriptionForm } from "@/components/inscription/InscriptionForm";
 import { IconClock, IconCheck, IconPhone } from "@/components/icons";
 import { TARIFS, HORAIRES, CONTACT } from "@/lib/constants";
 import { Category } from "@/lib/types";
-import { getSeasonLabel } from "@/lib/utils/season";
 
 export default function InscriptionPage() {
   const [category, setCategory] = useState<Category>("adultes");
   const [selectedTarif, setSelectedTarif] = useState<string | null>(null);
-  const [showForm, setShowForm] = useState(false);
-
-  const seasonLabel = getSeasonLabel();
 
   const filteredTarifs = TARIFS.filter((t) => t.category === category);
   const loisirTarifs = filteredTarifs.filter((t) => t.type === "loisir");
@@ -24,31 +19,12 @@ export default function InscriptionPage() {
     (h) => !h.category || h.category === category
   );
 
-  const selectedTarifData = TARIFS.find((t) => t.id === selectedTarif);
-
-  // Si le formulaire est affiché
-  if (showForm && selectedTarifData) {
-    return (
-      <div className="min-h-screen bg-[#121212] text-white pb-24">
-        <div className="bg-gradient-to-b from-red-900/30 to-transparent px-6 py-8">
-          <h1 className="text-3xl font-black mb-2">Inscription</h1>
-          <p className="text-gray-400">{seasonLabel}</p>
-        </div>
-        <InscriptionForm
-          tarif={selectedTarifData}
-          category={category}
-          onBack={() => setShowForm(false)}
-        />
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-[#121212] text-white pb-24">
       {/* Header */}
       <div className="bg-gradient-to-b from-red-900/30 to-transparent px-6 py-8">
         <h1 className="text-3xl font-black mb-2">Inscription</h1>
-        <p className="text-gray-400">{seasonLabel}</p>
+        <p className="text-gray-400">Saison 2024-2025</p>
       </div>
 
       {/* Toggle Enfants / Adultes */}
@@ -102,19 +78,6 @@ export default function InscriptionPage() {
         </div>
       </section>
 
-      {/* Bouton continuer si tarif sélectionné */}
-      {selectedTarif && (
-        <section className="px-4 py-4">
-          <Button
-            size="lg"
-            className="w-full"
-            onClick={() => setShowForm(true)}
-          >
-            Continuer l&apos;inscription
-          </Button>
-        </section>
-      )}
-
       {/* Horaires correspondants */}
       <section className="px-4 py-8">
         <Card className="p-6" hover={false}>
@@ -163,7 +126,7 @@ export default function InscriptionPage() {
       {/* CTA Final */}
       <section className="px-4 py-8">
         <Card className="p-6 text-center" hover={false}>
-          <h3 className="font-bold text-xl mb-2">Une question ?</h3>
+          <h3 className="font-bold text-xl mb-2">Prêt à rejoindre le club ?</h3>
           <p className="text-gray-400 text-sm mb-4">
             Contactez-nous ou passez directement au gymnase pendant les heures d&apos;entraînement.
           </p>
