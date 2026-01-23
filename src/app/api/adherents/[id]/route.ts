@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 async function checkAuth() {
   const session = await getServerSession(authOptions);
@@ -92,6 +93,9 @@ export async function PUT(
       },
     });
 
+    // Revalider la page club qui affiche le compteur d'adhérents
+    revalidatePath("/club");
+
     return NextResponse.json(adherent);
   } catch (error) {
     console.error("Erreur PUT adherent:", error);
@@ -115,6 +119,9 @@ export async function DELETE(
     await prisma.adherent.delete({
       where: { id },
     });
+
+    // Revalider la page club qui affiche le compteur d'adhérents
+    revalidatePath("/club");
 
     return NextResponse.json({ success: true });
   } catch (error) {

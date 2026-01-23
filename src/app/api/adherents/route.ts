@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getCurrentSeason } from "@/lib/utils/season";
+import { revalidatePath } from "next/cache";
 
 // Vérifier l'authentification admin
 async function checkAuth() {
@@ -107,6 +108,9 @@ export async function POST(request: NextRequest) {
         paye: false,
       },
     });
+
+    // Revalider la page club qui affiche le compteur d'adhérents
+    revalidatePath("/club");
 
     return NextResponse.json(adherent, { status: 201 });
   } catch (error) {
