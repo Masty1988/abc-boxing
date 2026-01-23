@@ -98,11 +98,12 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
           <div className="flex flex-col sm:flex-row items-center gap-6">
             <div className="w-24 h-24 rounded-full overflow-hidden shrink-0 ring-4 ring-red-500/20 relative">
               <OptimizedImage
-                src={images["ui-club-histoire"]}
+                src={images["ui-club-histoire"].url}
                 alt="Présidente"
                 fill
                 className="object-cover"
                 imageSize="thumbnail"
+                updatedAt={images["ui-club-histoire"].updatedAt}
               />
             </div>
             <div>
@@ -133,11 +134,12 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
         >
           <div className="h-48 relative">
             <OptimizedImage
-              src={images["ui-trophees"]}
+              src={images["ui-trophees"].url}
               alt="Trophées"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               imageSize="card"
+              updatedAt={images["ui-trophees"].updatedAt}
             />
             {/* Overlay avec compteur */}
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
@@ -172,11 +174,12 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
         >
           <div className="h-48 relative">
             <OptimizedImage
-              src={images["entrainement-groupe-1"]}
+              src={images["entrainement-groupe-1"].url}
               alt="Salle d'entraînement"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               imageSize="card"
+              updatedAt={images["entrainement-groupe-1"].updatedAt}
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
               <div className="bg-red-500/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
@@ -200,11 +203,12 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
         >
           <div className="h-48 relative">
             <OptimizedImage
-              src={images["ring-combat-1"]}
+              src={images["ring-combat-1"].url}
               alt="Ring de combat"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-300"
               imageSize="card"
+              updatedAt={images["ring-combat-1"].updatedAt}
             />
             <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex items-center justify-center">
               <div className="bg-red-500/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2">
@@ -431,12 +435,17 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
                 src={
                   isStaticPhotos
                     ? modalPhotos[currentPhotoIndex]
-                    : (images[modalPhotos[currentPhotoIndex] as keyof SiteImages] || images["ui-hero-accueil"])
+                    : (images[modalPhotos[currentPhotoIndex] as keyof SiteImages]?.url || images["ui-hero-accueil"].url)
                 }
                 alt={`${modalTitle} ${currentPhotoIndex + 1}`}
                 fill
                 className="object-contain"
                 imageSize="hero"
+                updatedAt={
+                  isStaticPhotos
+                    ? undefined
+                    : (images[modalPhotos[currentPhotoIndex] as keyof SiteImages]?.updatedAt || images["ui-hero-accueil"].updatedAt)
+                }
               />
             </div>
 
@@ -459,12 +468,17 @@ export function ClubClient({ images, totalAdherents }: ClubClientProps) {
                     src={
                       isStaticPhotos
                         ? photo
-                        : (images[photo as keyof SiteImages] || images["ui-hero-accueil"])
+                        : (images[photo as keyof SiteImages]?.url || images["ui-hero-accueil"].url)
                     }
                     alt={`Miniature ${idx + 1}`}
                     fill
                     className="object-cover"
                     imageSize="thumbnail"
+                    updatedAt={
+                      isStaticPhotos
+                        ? undefined
+                        : (images[photo as keyof SiteImages]?.updatedAt || images["ui-hero-accueil"].updatedAt)
+                    }
                   />
                 </button>
               ))}

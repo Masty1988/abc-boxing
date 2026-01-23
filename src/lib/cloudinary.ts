@@ -1,8 +1,14 @@
 // Helper pour récupérer les images depuis Cloudinary (via BDD)
 import { prisma } from "./prisma";
 
+// Type pour les données d'image avec cache busting
+export interface ImageData {
+  url: string;
+  updatedAt: Date | null;
+}
+
 // Cache en mémoire pour éviter les requêtes répétées
-let imageCache: Record<string, string> | null = null;
+let imageCache: Record<string, ImageData> | null = null;
 let cacheTimestamp = 0;
 const CACHE_DURATION = 60 * 60 * 1000; // 1 heure (optimisation perf)
 
@@ -57,14 +63,14 @@ export const getLogoUrl = (url: string) => getOptimizedUrl(url, 200);
 
 /**
  * Récupère une image Cloudinary par son ID de slot
- * Retourne l'URL Cloudinary ou une image par défaut si non trouvée
+ * Retourne l'URL Cloudinary et updatedAt pour cache busting
  */
-export async function getCloudinaryImage(slotId: string): Promise<string> {
+export async function getCloudinaryImage(slotId: string): Promise<ImageData> {
   const now = Date.now();
 
   // Vérifier le cache
   if (imageCache && now - cacheTimestamp < CACHE_DURATION) {
-    return imageCache[slotId] || `/images/placeholder.jpg`;
+    return imageCache[slotId] || { url: `/images/placeholder.jpg`, updatedAt: null };
   }
 
   // Charger toutes les images depuis la BDD
@@ -73,28 +79,32 @@ export async function getCloudinaryImage(slotId: string): Promise<string> {
       select: {
         key: true,
         url: true,
+        updatedAt: true,
       },
     });
 
-    // Construire le cache (slotId → URL)
+    // Construire le cache (slotId → ImageData)
     imageCache = {};
     for (const image of images) {
-      imageCache[image.key] = image.url;
+      imageCache[image.key] = {
+        url: image.url,
+        updatedAt: image.updatedAt,
+      };
     }
     cacheTimestamp = now;
 
-    return imageCache[slotId] || `/images/placeholder.jpg`;
+    return imageCache[slotId] || { url: `/images/placeholder.jpg`, updatedAt: null };
   } catch (error) {
     console.error("Erreur chargement Cloudinary:", error);
-    return `/images/placeholder.jpg`;
+    return { url: `/images/placeholder.jpg`, updatedAt: null };
   }
 }
 
 /**
  * Récupère toutes les images d'un coup
- * Retourne un objet { "ui-logo-club": "url", "ui-hero-accueil": "url", ... }
+ * Retourne un objet { "ui-logo-club": { url, updatedAt }, ... }
  */
-export async function getAllCloudinaryImages(): Promise<Record<string, string>> {
+export async function getAllCloudinaryImages(): Promise<Record<string, ImageData>> {
   const now = Date.now();
 
   if (imageCache && now - cacheTimestamp < CACHE_DURATION) {
@@ -106,12 +116,16 @@ export async function getAllCloudinaryImages(): Promise<Record<string, string>> 
       select: {
         key: true,
         url: true,
+        updatedAt: true,
       },
     });
 
     imageCache = {};
     for (const image of images) {
-      imageCache[image.key] = image.url;
+      imageCache[image.key] = {
+        url: image.url,
+        updatedAt: image.updatedAt,
+      };
     }
     cacheTimestamp = now;
 
