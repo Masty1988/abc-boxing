@@ -17,14 +17,16 @@ async function checkAuth() {
 // =============================================================================
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authError = await checkAuth();
   if (authError) return authError;
 
+  const { id } = await params;
+
   try {
     const adherent = await prisma.adherent.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!adherent) {
@@ -43,16 +45,18 @@ export async function GET(
 // =============================================================================
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authError = await checkAuth();
   if (authError) return authError;
 
+  const { id } = await params;
+
   try {
     const body = await request.json();
-    
+
     const adherent = await prisma.adherent.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         ...body,
         updatedAt: new Date(),
@@ -71,14 +75,16 @@ export async function PUT(
 // =============================================================================
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   const authError = await checkAuth();
   if (authError) return authError;
 
+  const { id } = await params;
+
   try {
     await prisma.adherent.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });
