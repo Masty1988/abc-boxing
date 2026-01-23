@@ -3,7 +3,6 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
 import { v2 as cloudinary } from "cloudinary";
 import { getSlotById } from "@/config/site-images";
 
@@ -17,7 +16,7 @@ cloudinary.config({
 export async function POST(req: NextRequest) {
   try {
     // 1. Vérifier l'authentification
-    const session = await getServerSession(authOptions);
+    const session = await getServerSession();
     if (!session) {
       return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
     }
@@ -30,11 +29,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "slotId requis" }, { status: 400 });
     }
 
-    // 3. Vérifier que le slot existe dans la config OU est un slot dynamique (event-xxx)
+    // 3. Vérifier que le slot existe dans la config
     const slot = getSlotById(slotId);
-    const isEventSlot = slotId.startsWith("event-");
-
-    if (!slot && !isEventSlot) {
+    if (!slot) {
       return NextResponse.json(
         { error: "Slot invalide" },
         { status: 400 }
@@ -49,7 +46,7 @@ export async function POST(req: NextRequest) {
       folder: "abc-boxing-assets",
       public_id: slotId, // ⚠️ On force le public_id = slot.id
       overwrite: true, // ⚠️ Écrase l'image existante
-      invalidate: false, // Purge le cache CDN
+      invalidate: true, // Purge le cache CDN
     };
 
     const signature = cloudinary.utils.api_sign_request(

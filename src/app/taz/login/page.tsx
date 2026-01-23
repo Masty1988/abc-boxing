@@ -1,12 +1,12 @@
 // src/app/taz/login/page.tsx
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 
-function LoginForm() {
+export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [username, setUsername] = useState("");
@@ -33,63 +33,13 @@ function LoginForm() {
       } else {
         router.push(callbackUrl);
       }
-    } catch {
+    } catch (err) {
       setError("Erreur de connexion");
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit} className="bg-[#1E1E1E] rounded-2xl p-6 border border-white/10">
-      {error && (
-        <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-sm text-center">
-          {error}
-        </div>
-      )}
-
-      <div className="mb-4">
-        <label htmlFor="username" className="block text-sm font-medium text-gray-400 mb-2">
-          Identifiant
-        </label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors"
-          placeholder="Votre identifiant"
-          required
-        />
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="password" className="block text-sm font-medium text-gray-400 mb-2">
-          Mot de passe
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors"
-          placeholder="••••••••"
-          required
-        />
-      </div>
-
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full py-3 bg-red-600 hover:bg-red-700 disabled:bg-red-600/50 text-white font-bold rounded-xl transition-colors uppercase tracking-wider"
-      >
-        {loading ? "Connexion..." : "Se connecter"}
-      </button>
-    </form>
-  );
-}
-
-export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#121212] flex items-center justify-center p-4">
       <div className="w-full max-w-md">
@@ -108,16 +58,52 @@ export default function LoginPage() {
           <p className="text-gray-500 text-sm">ABC Boxing</p>
         </div>
 
-        {/* Formulaire avec Suspense pour useSearchParams */}
-        <Suspense fallback={
-          <div className="bg-[#1E1E1E] rounded-2xl p-6 border border-white/10 animate-pulse">
-            <div className="h-12 bg-white/5 rounded-xl mb-4"></div>
-            <div className="h-12 bg-white/5 rounded-xl mb-6"></div>
-            <div className="h-12 bg-red-600/50 rounded-xl"></div>
+        {/* Formulaire */}
+        <form onSubmit={handleSubmit} className="bg-[#1E1E1E] rounded-2xl p-6 border border-white/10">
+          {error && (
+            <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-400 text-sm text-center">
+              {error}
+            </div>
+          )}
+
+          <div className="mb-4">
+            <label htmlFor="username" className="block text-sm font-medium text-gray-400 mb-2">
+              Identifiant
+            </label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors"
+              placeholder="Votre identifiant"
+              required
+            />
           </div>
-        }>
-          <LoginForm />
-        </Suspense>
+
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-400 mb-2">
+              Mot de passe
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-red-500 transition-colors"
+              placeholder="••••••••"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 bg-red-600 hover:bg-red-700 disabled:bg-red-600/50 text-white font-bold rounded-xl transition-colors uppercase tracking-wider"
+          >
+            {loading ? "Connexion..." : "Se connecter"}
+          </button>
+        </form>
 
         <p className="text-center text-gray-600 text-xs mt-6">
           Accès réservé aux administrateurs

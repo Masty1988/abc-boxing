@@ -41,8 +41,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
-    maxAge: 2 * 60 * 60, // 2 heures (plus sécurisé)
-    updateAge: 30 * 60, // Refresh toutes les 30 min si actif
+    maxAge: 24 * 60 * 60, // 24 heures
   },
   pages: {
     signIn: "/taz/login",

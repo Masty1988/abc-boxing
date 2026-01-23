@@ -44,7 +44,7 @@ export const TARIFS: Tarif[] = [
     discipline: "Boxe Française & Kickboxing",
     category: "adultes",
     type: "loisir",
-    name: "Boxe Française & Kickboxing",
+    name: "Boxe Française & K1",
     price: 145,
     features: ["Accès BF + Kickboxing", "Cours illimités", "Assurance incluse"],
   },
@@ -110,10 +110,9 @@ export const IMAGES = {
 // STAFF & STATS
 // =============================================================================
 export const STAFF: StaffMember[] = [
-  { name: "Vincent", role: "Coach / Arbitre Officiel", image: IMAGES.officiel },
+  { name: "Vincent", role: "Arbitre Officiel / Coach", image: IMAGES.officiel },
   { name: "Vanessa", role: "Préparateur physique", image: IMAGES.fede },
   { name: "Nathalie", role: "Présidente", image: IMAGES.engage2 },
-  { name: "Maya", role: "Entraîneur Kickboxing", image: IMAGES.engage },
 ];
 
 export const CLUB_STATS: ClubStats[] = [
@@ -130,6 +129,6 @@ export const NAV_ITEMS = [
   { id: "home", label: "Accueil", href: "/" },
   { id: "inscription", label: "Inscription", href: "/inscription" },
   { id: "club", label: "Club", href: "/club" },
-  { id: "galerie", label: "Histoire", href: "/galerie" },
-  { id: "disciplines", label: "Disciplines", href: "/disciplines" },
+  { id: "actualites", label: "News", href: "/actualites" },
+  { id: "galerie", label: "Galerie", href: "/galerie" },
 ] as const;
