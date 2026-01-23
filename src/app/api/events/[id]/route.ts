@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 // Vérifier l'authentification admin
 async function checkAuth() {
@@ -41,6 +42,9 @@ export async function PATCH(
       },
     });
 
+    // Revalider la page d'accueil qui affiche les événements
+    revalidatePath("/");
+
     return NextResponse.json(event);
   } catch (error) {
     console.error("Erreur PATCH event:", error);
@@ -64,6 +68,9 @@ export async function DELETE(
     await prisma.event.delete({
       where: { id },
     });
+
+    // Revalider la page d'accueil qui affiche les événements
+    revalidatePath("/");
 
     return NextResponse.json({ success: true });
   } catch (error) {

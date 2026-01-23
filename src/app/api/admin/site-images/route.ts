@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
+import { invalidateImageCache } from "@/lib/cloudinary";
 
 // GET : Récupérer toutes les images
 export async function GET() {
@@ -75,6 +77,16 @@ export async function PUT(req: NextRequest) {
         description,
       },
     });
+
+    // Invalider le cache en mémoire des images
+    invalidateImageCache();
+
+    // Revalider les pages qui utilisent des images
+    revalidatePath("/");
+    revalidatePath("/club");
+    revalidatePath("/galerie");
+    revalidatePath("/disciplines");
+    revalidatePath("/inscription");
 
     return NextResponse.json({ image });
   } catch (error) {
