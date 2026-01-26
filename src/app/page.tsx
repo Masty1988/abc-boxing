@@ -35,12 +35,13 @@ export default async function HomePage() {
       <section className="relative h-[75vh] min-h-[500px] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
         {/* Image de fond Cloudinary */}
         <OptimizedImage
-          src={images["ui-hero-accueil"]}
+          src={images["ui-hero-accueil"].url}
           alt="ABC Boxing Club"
           fill
           className="object-cover"
           priority ={true}
           imageSize="hero"
+          updatedAt={images["ui-hero-accueil"].updatedAt}
         />
 
         {/* Overlay sombre pour lisibilité */}
@@ -179,14 +180,15 @@ export default async function HomePage() {
       {/* Google Maps avec background */}
       <section className="px-6 py-8 relative">
         {/* Image de fond optionnelle */}
-        {images["ui-background-contact"] && images["ui-background-contact"] !== "/images/placeholder.svg" && (
+        {images["ui-background-contact"]?.url && images["ui-background-contact"].url !== "/images/placeholder.svg" && (
           <>
             <OptimizedImage
-              src={images["ui-background-contact"]}
+              src={images["ui-background-contact"].url}
               alt="Contact background"
               fill
               className="object-cover opacity-20"
               imageSize="hero"
+              updatedAt={images["ui-background-contact"].updatedAt}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-[#121212] via-transparent to-[#121212]" />
           </>

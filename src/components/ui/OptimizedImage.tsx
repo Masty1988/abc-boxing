@@ -1,5 +1,5 @@
 import Image, { ImageProps } from "next/image";
-import { getOptimizedUrl } from "@/lib/cloudinary";
+import { getOptimizedUrlWithVersion } from "@/lib/cloudinary";
 
 type ImageSize = "hero" | "gallery" | "thumbnail" | "logo" | "card";
 
@@ -24,6 +24,11 @@ interface OptimizedImageProps extends Omit<ImageProps, "loading" | "quality"> {
    * - logo: 200px (logos)
    */
   imageSize?: ImageSize;
+
+  /**
+   * Timestamp pour cache busting (updatedAt de SiteImage)
+   */
+  updatedAt?: Date | string | null;
 }
 
 // Mapping des tailles vers largeurs pixels
@@ -48,11 +53,12 @@ const SIZES_MAP: Record<ImageSize, string> = {
  * Composant Image optimise avec:
  * - Lazy loading par defaut
  * - Transformations Cloudinary automatiques (w_XXX, f_auto, q_auto)
+ * - Cache busting via ?v=timestamp (si updatedAt fourni)
  * - Attribut sizes pour responsive
  *
  * Usage:
- * - <OptimizedImage src="..." alt="..." fill priority imageSize="hero" /> pour hero
- * - <OptimizedImage src="..." alt="..." fill imageSize="gallery" /> pour galerie
+ * - <OptimizedImage src="..." alt="..." fill priority imageSize="hero" updatedAt={date} />
+ * - <OptimizedImage src={imageData.url} alt="..." fill imageSize="gallery" updatedAt={imageData.updatedAt} />
  */
 export function OptimizedImage({
   priority = false,
@@ -61,11 +67,14 @@ export function OptimizedImage({
   src,
   sizes,
   imageSize = "gallery",
+  updatedAt,
   ...props
 }: OptimizedImageProps) {
-  // Optimiser l'URL Cloudinary si applicable
+  // Optimiser l'URL Cloudinary avec cache busting si applicable
   const optimizedSrc =
-    typeof src === "string" ? getOptimizedUrl(src, SIZE_MAP[imageSize]) : src;
+    typeof src === "string"
+      ? getOptimizedUrlWithVersion(src, SIZE_MAP[imageSize], updatedAt || undefined)
+      : src;
 
   // Utiliser sizes fourni ou le defaut selon imageSize
   const responsiveSizes = sizes || SIZES_MAP[imageSize];
