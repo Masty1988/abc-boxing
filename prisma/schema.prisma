@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Adherent {
+  id              String   @id @default(cuid())
+  nom             String
+  prenom          String
+  email           String?  @unique
+  telephone       String?
+  photo           String?
+  numeroLicence   String?  @unique
+  categorie       String   @default("ADULTE")
+  discipline      String   @default("BF")
+  formule         String   @default("LOISIR")
+  combattant      Boolean  @default(false)
+  paye            Boolean  @default(false)
+  montant         Float?
+  methodePaiement String?
+  stripePaymentId String?
+  datePaiement    DateTime?
+  dateInscription DateTime @default(now())
+  saison          String   @default("2025-2026")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  nom          String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model PhotoSlot {
+  id        String   @id @default(cuid())
+  page      String
+  slot      String
+  label     String
+  imageUrl  String
+  ordre     Int      @default(0)
+  updatedAt DateTime @updatedAt
+  @@unique([page, slot])
+}
+model SiteImage {
+  id          String   @id @default(cuid())
+  key         String   @unique // Ex: "home_hero", "about_coach", "gallery_1"
+  url         String   // L'URL Cloudinary
+  description String?  // Pour le alt text (SEO)
+  format      String?  // jpg, png, webp
+  width       Int?
+  height      Int?
+  category    String?  // UI, COMBAT, ENTRAINEMENT, AUTRE
+  updatedAt   DateTime @updatedAt
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  titre       String
+  description String
+  date        DateTime // Date et heure de l'événement
+  lieu        String?  // Ex: "Gymnase Descartes"
+  prix        Float?   // Prix en euros (optionnel, null = gratuit)
+  imageUrl    String?  // URL de l'image (Cloudinary ou autre)
+  lienReservation String? // URL externe pour réserver (si applicable)
+  publie      Boolean  @default(true) // Permet de masquer un événement
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([date])
+}
